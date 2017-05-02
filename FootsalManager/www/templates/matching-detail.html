@@ -1,0 +1,46 @@
+<ion-modal-view ng-controller="Matching-detailController">
+    <ion-header-bar align-title="center" class="bar-positive">
+        <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
+        <h1 class="title">Matching Detail</h1>
+        <button class="button button-icon icon ion-trash-b" ng-if="matchingSelect.regid == localStorage.id" ng-click="showDeletePopup()"></button>
+
+    </ion-header-bar>
+    <ion-content>
+
+      <div class="card">
+        <div class="item item-avatar">
+          <img ng-src="{{matchingSelect.regt_picture}}" style="border:1px solid black;">
+          <h4>아이디 : {{matchingSelect.regid}}</h4>
+          <h4>팀이름 : {{matchingSelect.regteam}}</h4>
+          <h4>위치 : {{matchingSelect.reglocation}}</h4>
+          <h4>내용 : {{matchingSelect.regcontent}}</h4>
+          <h4>인원 : {{matchingSelect.regteamnum}}명</h4>
+          <h4>매칭 날짜 : {{matchingSelect.regcity}} {{matchingSelect.reggu}}</h4>
+          <h4>경기 날짜 : {{matchingSelect.reghopeTime}}</h4>
+          <h4 ng-if="(matchingSelect.opp_YN == 1) && (matchingSelect.reg_YN == 1) && (matchingSelect.oppid == localStorage.id)">전화번호 : {{matchingSelect.regphone}}</h4>
+        </div>
+      </div>
+
+      <h1 ng-if="matchingSelect.opp_YN == 1" style="text-align: center; color:red;">VS</h1>
+
+      <div class="card" ng-if="matchingSelect.opp_YN == 1">
+        <div class="item item-avatar">
+          <img ng-src="{{matchingSelect.oppt_picture}}" style="border:1px solid black;">
+          <h4>아이디 : {{matchingSelect.oppid}}</h4>
+          <h4>팀이름 : {{matchingSelect.oppteam}}</h4>
+          <h4 ng-if="matchingSelect.opp_YN == 1 && matchingSelect.reg_YN == 1 && (matchingSelect.regid == localStorage.id)">전화번호 : {{matchingSelect.oppphone}}</h4>
+        </div>
+      </div>
+
+    </ion-content>
+
+    <ion-footer-bar class="bar-positive footer-bar">
+      <div class="button-bar" ng-show="buttonBar">
+        <button class="button button-clear" ng-bind="registerName" ng-show="registerShow" ng-click="PositiveBtn()" style="border:1px solid white;"></button>
+        <button class="button button-clear" ng-show="cancelShow" ng-click="negativeBtn()" style="border:1px solid white;">취소</button>
+        <button class="button button-clear" ng-bind="stateName" ng-show="stateShow" style="border:1px solid white;"  ng-disabled="true">완료된 매치입니다.</button>
+      </div>
+    </ion-footer-bar>
+
+</ion-modal-view>
+

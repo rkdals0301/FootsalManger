@@ -1,0 +1,32 @@
+<ion-view view-title="Register">
+  <ion-content class="has-header padding">
+
+    <div class="row">
+      <div class="col col-33 col-offset-33">
+        <img ng-src="http://dlrkdalsdl.cafe24.com/resources/upload/logo/logo.png" style="width:100%;height:auto;"></img>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-weight:bold;">FootsalManager</p>
+
+    <div class="list" style="margin-top:15px;">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">ID</span>
+        <input type="text" ng-model="member.id" placeholder="ID">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Password</span>
+        <input type="password" ng-model="member.password" placeholder="Password">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Password_Confirm</span>
+        <input type="password" ng-model="member_confirm.password_confirm" placeholder="Password_Confirm">
+      </label>
+
+      <button class="button button-block button-positive" ng-click="InsertMemberData()">Account</button>
+    </div>
+
+
+  </ion-content>
+
+</ion-view>

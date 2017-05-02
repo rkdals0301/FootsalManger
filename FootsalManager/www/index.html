@@ -28,18 +28,49 @@
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
-
+    <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
     <!-- your app's js -->
     <script src="js/app.js"></script>
-  </head>
-  <body ng-app="starter">
 
-    <ion-pane>
-      <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
-      </ion-header-bar>
-      <ion-content>
-      </ion-content>
-    </ion-pane>
+    <script src="js/controller/main-controller.js"></script>
+    <script src="js/controller/home-controller.js"></script>
+    <script src="js/controller/member-login-controller.js"></script>
+    <script src="js/controller/member-register-controller.js"></script>
+    <script src="js/controller/matching-controller.js"></script>
+    <script src="js/controller/matching-create-controller.js"></script>
+    <script src="js/controller/matching-detail-controller.js"></script>
+    <script src="js/controller/recruitment-controller.js"></script>
+    <script src="js/controller/recruitment-create-controller.js"></script>
+    <script src="js/controller/recruitment-detail-controller.js"></script>
+    <script src="js/controller/reservation-controller.js"></script>
+    <script src="js/controller/team-controller.js"></script>
+    <script src="js/controller/community-controller.js"></script>
+    <script src="js/controller/profile-controller.js"></script>
+    <script src="js/controller/location-controller.js"></script>
+
+    <script src="js/model/dto/recruitment.js"></script>
+    <script src="js/model/dto/matching.js"></script>
+
+
+    <script src="js/model/member-login-manager.js"></script>
+    <script src="js/model/location-manager.js"></script>
+    <script src="js/model/recruitment-manager.js"></script>
+    <script src="js/model/member-manager.js"></script>
+    <script src="js/model/matching-manager.js"></script>
+    <script src="js/model/http-connector.js"></script>
+    <script src="js/model/reservation-manager.js"></script>
+    <script src="js/model/profile-manager.js"></script>
+
+
+    <script src="js/util/modal-util.js"></script>
+    <script src="js/util/popup-util.js"></script>
+    <script src="js/util/loading-util.js"></script>
+
+    <link href="lib/AnimateCss/css/animate.css" rel="stylesheet" >
+
+  </head>
+
+  <body ng-app="app" ng-controller="AppController">
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>

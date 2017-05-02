@@ -1,0 +1,47 @@
+<ion-modal-view ng-controller="Recruitment-detailController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
+    <h1 class="title">Recruitment-Detail</h1>
+    <button class="button button-icon icon ion-trash-b" ng-if="recruitment.regid == localStorage.id" ng-click="showDeletePopup()"></button>
+  </ion-header-bar>
+  <ion-content  class="has-header padding">
+    <div>
+      <h4 class="positive" style="text-align: center">용병</h4>
+    </div>
+    <div>
+      <img src="img/profile.png" style="margin-left:auto; margin-right:auto; max-width:100px; min-width:100px; display:block"> <!-- recruitment.regpicture-->
+
+      <h5 style="text-align: center">닉네임 : {{recruitment.regnickname}}</h5>
+      <h5 style="text-align: center">나이 : {{recruitment.regage}}</h5>
+      <h5 style="text-align: center">주발 : {{recruitment.regfoot}}</h5>
+      <h5 style="text-align: center">포지션 : {{recruitment.regposition}}</h5>
+      <h5 style="text-align: center">사는 곳 : {{recruitment.reglocation}}</h5>
+      <h5 style="text-align: center">원하는 곳 : {{recruitment.regcity}} {{recruitment.reggu}} </h5>
+      <h5 style="text-align: center">키 : {{recruitment.regheight}}</h5>
+      <h5 style="text-align: center">몸무게 : {{recruitment.regweight}}</h5>
+      <h5 style="text-align: center">내용 : {{recruitment.regcontent}}</h5>
+      <h5 style="text-align: center" ng-if="(recruitment.opp_YN == 1) && (recruitment.reg_YN == 1) && (recruitment.oppid == localStorage.id)">전화번호 : {{recruitment.regphone}}</h5>
+    </div>
+
+
+    <div style="margin-top:20px;">
+      <h4 class="positive" style="text-align: center">팀장</h4>
+    </div>
+    <div ng-if="recruitment.opp_YN == 1">
+      <img ng-src="img/images.jpg" style="margin-left:auto; margin-right:auto; max-width:100px; min-width:100px; display:block"> <!--recruitment.oppemblem-->
+      <h5 style="text-align: center">팀이름 : {{recruitment.oppteam}}</h5>
+      <h5 style="text-align: center" ng-if="recruitment.opp_YN == 1 && recruitment.reg_YN == 1 && (recruitment.regid == localStorage.id)">전화번호 : {{recruitment.oppphone}}</h5>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="bar-positive footer-bar">
+    <div class="button-bar">
+      <button class="button button-clear" ng-bind="registerName" ng-show="registerShow" ng-click="PositiveBtn()" style="border:1px solid white;"></button>
+      <button class="button button-clear" ng-show="cancelShow" ng-click="negativeBtn()" style="border:1px solid white;">취소</button>
+      <button class="button button-clear" ng-bind="stateName" ng-show="stateShow" style="border:1px solid white;"  ng-disabled="true">완료된 매치입니다.</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-modal-view>
+

@@ -1,0 +1,42 @@
+<ion-view view-title="Matching">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-edit" ng-click="showCreate('slideInRight', 'detail')"></button>
+  </ion-nav-buttons>
+  <ion-content class="has-header">
+    <ion-refresher
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="item item-divider">지역선택</div>
+    <ion-list>
+      <span class="item item-icon-right" ng-click="showCity('fadeInDownBig',0)">
+        지역 선택 : {{location.city}}
+        <i class="icon ion-location"></i>
+      </span>
+      <span class="item item-icon-right" ng-click="showCity('fadeInDownBig',1)" ng-show="location.city != '전체'">
+        구 선택 : {{location.gu}}
+        <i class="icon ion-location"></i>
+      </span>
+      <div class="item item-divider">매칭선택</div>
+      <ion-item collection-repeat="match in matchingList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', match.idx)">
+        <img ng-src="{{match.regt_picture}}">
+        <h3>아이디 : {{match.regid}}</h3>
+        <h3>팀이름 : {{match.regteam}}</h3>
+        <h4>매칭 시간 : {{match.reghopeTime}}</h4>
+        <h4>매칭 지역 : {{match.regcity}} {{match.reggu}}</h4>
+        <div ng-switch on= "match.opp_YN">
+          <div ng-switch-when="1">
+            <h4 ng-if="match.reg_YN == 1">매칭 완료</h4>
+            <h4 ng-if="match.reg_YN == 0">매칭 중</h4>
+          </div>
+          <div ng-switch-when="0">
+            <h4>매칭 대기중</h4>
+          </div>
+        </div>
+      </ion-item>
+    </ion-list>
+
+    <!--<ion-infinite-scroll ng-if="canWeLoadMoreContent()" on-infinite="populateList()" distance="10%"></ion-infinite-scroll>-->
+
+  </ion-content>
+
+</ion-view>

@@ -1,0 +1,43 @@
+<ion-view view-title="Reservation">
+  <ion-content class="has-header">
+      <ion-refresher
+        on-refresh="doRefresh()">
+      </ion-refresher>
+      <span class="item item-icon-right" ng-click="showCity('slideInDown', 0)">
+        지역 선택 : {{location.city}}
+        <i class="icon ion-location"></i>
+      </span>
+      <span class="item item-icon-right" ng-click="showCity('slideInDown', 1)" ng-show="location.city != '전체'">
+        구 선택 : {{location.gu}}
+        <i class="icon ion-location"></i>
+      </span>
+
+      <div class="row" ng-repeat="reservation in reservationList" ng-switch ="$index % 2" >
+
+        <div class="col" ng-switch-when="0">
+          <div class="card" ng-click="showDetail('slideInRight', reservation.idx)">
+            <div class="item item-image">
+              <img ng-src="/img/stadium.jpg" style="min-height: 100px; max-height: 100px;">
+            </div>
+            <div class="item item-divider">
+              <h5 style="text-align: center">{{reservation.sname}}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col" ng-switch-when="0">
+          <div class="card" ng-show="reservationList[$index+1].idx != null" ng-click="showDetail('slideInRight', reservationList[$index+1].idx)">
+            <div class="item item-image">
+              <img ng-src="/img/stadium2.jpg" style="min-height: 100px;max-height: 100px;">
+            </div>
+            <div class="item item-divider">
+              <h5 style="text-align: center">{{reservationList[$index+1].sname}}</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+  </ion-content>
+</ion-view>

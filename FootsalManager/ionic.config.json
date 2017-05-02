@@ -1,4 +1,10 @@
 {
   "name": "FootsalManager",
-  "app_id": ""
+  "app_id": "",
+  "proxies":[
+    {
+      "path":"/api",
+      "proxyUrl":"http://172.19.1.230:8181/dlrkdals"
+    }
+  ]
 }

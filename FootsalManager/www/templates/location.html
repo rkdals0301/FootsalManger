@@ -1,0 +1,17 @@
+<ion-modal-view ng-controller="LocationController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
+    <h1 class="title">지역 선택</h1>
+    <button class="button button-icon icon ion-android-done" ng-click="ChoiceCity()"></button>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider">
+        <ion-radio ng-model="choiceLocation.city" ng-value="'전체'" ng-show='locatonChk == 0'>전체</ion-radio>
+        <ion-radio ng-model="choiceLocation.gu" ng-value="'전체'" ng-show='locatonChk == 1'>전체</ion-radio>
+        <ion-radio ng-repeat="Location in LocationList" ng-model="choiceLocation.city" ng-value='Location.city' ng-show='locatonChk == 0'>{{Location.city}}</ion-radio>
+        <ion-radio ng-repeat="Location in LocationList" ng-model="choiceLocation.gu" ng-value='Location.gu' ng-show='locatonChk == 1'>{{Location.gu}}</ion-radio>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>
