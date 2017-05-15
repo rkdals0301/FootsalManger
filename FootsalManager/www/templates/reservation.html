@@ -1,17 +1,21 @@
 <ion-view view-title="Reservation">
   <ion-content class="has-header">
+
       <ion-refresher
         on-refresh="doRefresh()">
       </ion-refresher>
-      <span class="item item-icon-right" ng-click="showCity('slideInDown', 0)">
+
+    <div class="item item-divider">지역선택</div>
+    <span class="item item-icon-right" ng-click="showCity('fadeInDownBig',0)">
         지역 선택 : {{location.city}}
         <i class="icon ion-location"></i>
       </span>
-      <span class="item item-icon-right" ng-click="showCity('slideInDown', 1)" ng-show="location.city != '전체'">
+    <span class="item item-icon-right" ng-click="showCity('fadeInDownBig',1)" ng-show="location.city != '전체'">
         구 선택 : {{location.gu}}
         <i class="icon ion-location"></i>
-      </span>
+    </span>
 
+    <div class="item item-divider">구장선택</div>
       <div class="row" ng-repeat="reservation in reservationList" ng-switch ="$index % 2" >
 
         <div class="col" ng-switch-when="0">

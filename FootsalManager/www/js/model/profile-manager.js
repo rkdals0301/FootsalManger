@@ -18,8 +18,6 @@ angular.module('app.profile.manager', ['app.http.connector'])
       return defer.promise;
     };
 
-
-
     this.setProfilePicture = function(picture) {
       var defer = $q.defer();
       var url = ApiEndpoint.url + '/profiles/picture';
@@ -35,5 +33,22 @@ angular.module('app.profile.manager', ['app.http.connector'])
       );
       return defer.promise;
     };
+
+    this.putProfile = function (profile) {
+      var defer = $q.defer();
+      var url = ApiEndpoint.url + '/profiles';
+
+      httpConnector.put(url, profile).then(
+        function (data) {
+          defer.resolve(data.data);
+        },
+        function (error) {
+          console.log(error);
+          defer.reject(data.data);
+        }
+      );
+      return defer.promise;
+    };
+
 
   });

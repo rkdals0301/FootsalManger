@@ -1,0 +1,68 @@
+<ion-modal-view ng-controller="Profile-UpdateController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
+    <h1 class="title">Profile Update</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-header">
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">p_Name</span>
+        <input type="text" placeholder="p_name" ng-model="profile.p_name">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">NickName</span>
+        <input type="text" placeholder="nickname" ng-model="profile.nickname">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Age</span>
+        <input type="number" placeholder="age" ng-model="profile.age">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Phone</span>
+        <input type="number" placeholder="phone" ng-model="profile.phone">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Foot</span>
+        <input type="text" placeholder="foot" ng-model="profile.foot">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Position</span>
+        <input type="text" placeholder="position" ng-model="profile.position">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Live_Location</span>
+        <input type="text" placeholder="live_location" ng-model="profile.live_location">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Height</span>
+        <input type="number" placeholder="height" ng-model="profile.height">
+      </label>
+      <label class="item item-input item-stacked-label">
+      <span class="input-label">Weight</span>
+      <input type="number" placeholder="weight" ng-model="profile.weight">
+    </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Favorite_Stadium</span>
+        <input type="text" placeholder="favorite_stadium" ng-model="profile.favorite_stadium">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Main_Team</span>
+        <input type="text" placeholder="main_team" ng-model="profile.main_team">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Sub_Team</span>
+        <input type="text" placeholder="sub_team" ng-model="profile.sub_team">
+      </label>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="bar-positive footer-bar">
+    <div class="button-bar">
+      <button class="button button-clear" ng-click="putProfile()">Update</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-modal-view>
+
+

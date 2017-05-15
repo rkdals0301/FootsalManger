@@ -1,4 +1,6 @@
-angular.module('app.main.reservation.controller', ['app.reservation.manager','app.location.controller'])
+angular.module('app.main.reservation.controller', ['app.location.controller'
+  ,'app.modal.util'
+  ,'app.reservation.manager'])
 
   .config(function($stateProvider){
     $stateProvider
@@ -13,43 +15,23 @@ angular.module('app.main.reservation.controller', ['app.reservation.manager','ap
       });
   })
 
-  .controller('ReservationController', function($scope, reservationManager, modalUtil, popupUtil, loadingUtil, $cordovaDatePicker){
+  .controller('ReservationController', function($scope, reservationManager, modalUtil, popupUtil, loadingUtil){
 
     $scope.locatonChk = 0;
     $scope.location = {city : '전체', gu : '전체'};
 
-    $scope.$on('$ionicView.loaded', function() { //initialize
-      console.log('reservation.js loaded');
-    });
-    //
+    function Init() {
+      $scope.getReservationListData();
+    };
+
     $scope.$on('$ionicView.beforeEnter', function(){ //initialize
       console.log('reservation.js beforeEnter');
       Init();
     });
-    $scope.$on('$ionicView.enter', function() { //initialize
-      console.log('reservation.js enter');
-    });
-    // $scope.$on('$ionicView.afterEnter', function(){ //initialize
-    //   console.log('reservation.js afterEnter');
-    // });
-    //
-    // $scope.$on('$ionicView.beforeLeave', function(){
-    //   console.log('reservation.js beforeLeave');
-    // });
-    $scope.$on('$ionicView.leave', function(){
-      console.log('reservation.js leave');
-    });
-    // $scope.$on('$ionicView.afterLeave', function(){
-    //   console.log('reservation.js afterLeave');
-    // });
-    //
-    $scope.$on('$ionicView.unloaded', function(){
-      console.log('reservation.js unloaded');
-    });
 
-    function Init() {
-      $scope.getReservationListData();
-    };
+    $scope.$on('$ionicView.beforeLeave', function(){
+      console.log('reservation.js beforeLeave');
+    });
 
     $scope.getReservationListData = function (){
       loadingUtil.showLoading();
@@ -85,24 +67,4 @@ angular.module('app.main.reservation.controller', ['app.reservation.manager','ap
       $scope.getReservationListData();
     };
 
-
-    var options = {
-      date: new Date(),
-      mode: 'date', // or 'time'
-      minDate: new Date(),
-      allowOldDates: true,
-      allowFutureDates: false,
-      doneButtonLabel: 'DONE',
-      doneButtonColor: '#F2F3F4',
-      cancelButtonLabel: 'CANCEL',
-      cancelButtonColor: '#000000'
-    };
-
-    document.addEventListener("deviceready", function () {
-
-      $cordovaDatePicker.show(options).then(function(date){
-        alert(date);
-      });
-
-    }, false);
   });

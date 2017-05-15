@@ -1,19 +1,30 @@
-angular.module('app.main.matching.create.controller', ['app.matching.manager'])
+angular.module('app.main.matching.create.controller', [])
 
-  .controller('Matching-createController', function($scope, matchingManager){
+  .controller('Matching-CreateController', function($scope, $rootScope, matchingManager, toastUtil, loadingUtil){
+    $scope.matching = {regid : $rootScope.localStorage.id, reghopeTime : '', regcontent : '', regcity : '', reggu : '', regteamnum : ''};
 
-    $scope.Matching = {};
-    $scope.Matching.regid = "dlrkdalsdl";    //$localstorage.get('id')
-    $scope.Matching.reghopeTime = "2017.4.17";    //$localstorage.get('id')
-    $scope.Matching.reglive_location = "대구 동구";    //$localstorage.get('id')
-    $scope.Matching.regcontent = "안녕";
-    $scope.Matching.regcity = "부산광역시";
-    $scope.Matching.reggu = "중구";
-    $scope.Matching.regteamnum = 6;
+    $scope.SubmitMatching = function () {
+      if($scope.matching.reghopeTime == ''){
+        toastUtil.showShortBottomToast('원하는 시간을 입력하세요.');
+      } else if ($scope.matching.regcontent == ''){
+        toastUtil.showShortBottomToast('내용를 입력하세요.');
+      } else if ($scope.matching.regcity == ''){
+        toastUtil.showShortBottomToast('원하는 도,시를 입력하세요.');
+      } else if($scope.matching.reggu == ''){
+        toastUtil.showShortBottomToast('원하는 구를 입력하세요.');
+      } else if($scope.matching.regteamnum == ''){
+        toastUtil.showShortBottomToast('팀원 수를 입력하세요.');
+      } else {
+        $scope.setMatching();
+      }
+    };
 
-    $scope.setData = function () {
-      matchingManager.setMatching($scope.Matching).then(
+    $scope.setMatching = function () {
+      loadingUtil.showLoading();
+      matchingManager.setMatching($scope.matching).then(
         function (data) {
+          toastUtil.showShortBottomToast('매칭이 등록 되었습니다.');
+          loadingUtil.hideLoading();
           $scope.modal.remove();
         },
         function (error) {

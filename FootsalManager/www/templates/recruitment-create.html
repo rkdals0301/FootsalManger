@@ -1,26 +1,29 @@
-<ion-modal-view ng-controller="Recruitment-createController">
+<ion-modal-view ng-controller="Recruitment-CreateController">
   <ion-header-bar align-title="center" class="bar-positive">
     <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
     <h1 class="title">Recruitment-Create</h1>
   </ion-header-bar>
 
   <ion-content class="has-header">
-
-    <!--<onezone-datepicker datepicker-object="onezoneDatepicker">-->
-    <!--<button class="button button-block button-outline button-positive show-onezone-datepicker">-->
-    <!--{{onezoneDatepicker.date | date:'dd MMMM yyyy'}}-->
-    <!--</button>-->
-    <!--</onezone-datepicker>-->
-
-    <!--<button class="button button-block button-outline button-positive" ng-click="showPopup()">-->
-    <!--인원 선택-->
-    <!--</button>-->
-
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regContent</span>
+        <input type="text" placeholder="Content" ng-model="recruitment.regcontent">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regCity</span>
+        <input type="text" placeholder="City" ng-model="recruitment.regcity">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regGu</span>
+        <input type="text" placeholder="Gu" ng-model="recruitment.reggu">
+      </label>
+    </div>
   </ion-content>
 
   <ion-footer-bar class="bar-positive footer-bar">
     <div class="button-bar">
-      <button class="button button-clear" ng-click="setData()">Submit</button>
+      <button class="button button-clear" ng-click="SubmitRecruitment()" ng-disabled="localStorage.id == 'null'">Submit</button>
     </div>
   </ion-footer-bar>
 

@@ -18,11 +18,10 @@ angular.module('app.popup.util', [])
             type: 'button-positive',
             onTap: function (e) {
               if(category == "matching")
-                scope.deleteMatchingData();
+                scope.deleteMatching();
               else if (category == "recruitment"){
-                scope.deleteRecruitmentData();
+                scope.deleteRecruitment();
               }
-              scope.modal.remove();
             }
           }
         ]
@@ -51,25 +50,7 @@ angular.module('app.popup.util', [])
       });
     };
 
-    $scope.showPopup = function() {
-      $scope.data = {};
-      $ionicPopup.show({
-        template: '<input type="username">',
-        title: 'Enter Username',
-        subTitle: 'Please Enter Username',
-        scope: $scope,
-        buttons: [
-          { text: 'Cancel' },
-          {
-            text: '<b>Save</b>',
-            type: 'button-positive',
-            onTap: function(e) {
-              // add your action
-            }
-          }
-        ]
-      });
-    };
+
 
 
   });

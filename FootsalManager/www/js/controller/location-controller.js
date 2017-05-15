@@ -1,21 +1,20 @@
-angular.module('app.location.controller', ['app.location.manager','app.loading.util'])
-
+angular.module('app.location.controller', ['app.location.manager'])
 
   .controller('LocationController', function($scope, locationManager, loadingUtil){
     $scope.choiceLocation = {city : null, gu : null};
 
-    function init(){
+    $scope.$on('modal.shown', function(){
       // 0 : city, 1 : gu
       if($scope.locatonChk == 0){
-        $scope.getLocationListData();
+        $scope.getLocationCityListData();
       } else if ($scope.locatonChk == 1) {
-        $scope.getLocationData($scope.location.city);
+        $scope.getLocationGuListData($scope.location.city);
       }
-    };
+    });
 
-    $scope.getLocationListData = function() {
+    $scope.getLocationCityListData = function() {
       loadingUtil.showLoading();
-      locationManager.getLocationList().then(
+      locationManager.getLocationCityList().then(
         function(data) {
           $scope.LocationList  = data;
           loadingUtil.hideLoading();
@@ -26,9 +25,9 @@ angular.module('app.location.controller', ['app.location.manager','app.loading.u
       );
     };
 
-    $scope.getLocationData = function(city) {
+    $scope.getLocationGuListData = function(city) {
       loadingUtil.showLoading();
-      locationManager.getLocation(city).then(
+      locationManager.getLocationGuList(city).then(
         function(data) {
           $scope.LocationList  = data;
           loadingUtil.hideLoading();
@@ -38,9 +37,6 @@ angular.module('app.location.controller', ['app.location.manager','app.loading.u
         }
       );
     };
-
-    init();
-
 
     $scope.ChoiceCity = function () {
       if($scope.locatonChk == 0){

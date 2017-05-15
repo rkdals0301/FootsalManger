@@ -2,14 +2,14 @@ angular.module('app.recruitment.manager', ['app.http.connector'])
 
   .service('recruitmentManager', function($q, httpConnector, ApiEndpoint) {
 
-    this.getRecruitmentList = function(location) {
+    this.getRecruitmentLocationList = function(location) {
       var locations = {
         'city' : location.city,
         'gu' : location.gu
       };
 
       var defer = $q.defer();
-      var url = ApiEndpoint.url + '/recruitments';
+      var url = ApiEndpoint.url + '/recruitments/location';
 
       httpConnector.getData(url, {params: locations}).then(
         function(data) {

@@ -1,7 +1,8 @@
-angular.module('app.login.manager', [])
+angular.module('app.localstorage.manager', [])
 
 
-  .factory('$localstorage', ['$window', function($window){
+  .service('$localstorage', ['$window', function($window){
+
     return {
 
       set : function(key, value){

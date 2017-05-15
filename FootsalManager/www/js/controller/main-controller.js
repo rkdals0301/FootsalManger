@@ -1,6 +1,8 @@
-angular.module('app.main.controller', ['app.main.home.controller','app.main.matching.controller', 'app.main.reservation.controller', 'app.main.team.controller'
-              , 'app.main.community.controller','app.main.recruitment.controller','app.login.controller','app.register.controller','app.login.manager','app.popup.util'
-              ,'app.main.profile.controller','app.profile.manager'])
+angular.module('app.main.controller', ['app.main.home.controller','app.main.matching.controller', 'app.main.reservation.controller'
+  ,'app.main.team.controller', 'app.main.community.controller','app.main.recruitment.controller','app.main.login.controller','app.main.register.controller'
+  ,'app.main.profile.controller','app.main.tip.controller',
+  'app.popup.util','app.loading.util', 'app.toast.util','app.modal.util',
+  'app.profile.manager', 'app.member.manager'])
 
   .config(function($stateProvider){
     $stateProvider
@@ -12,42 +14,32 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
       });
   })
 
-  .controller('MainController', function($scope, $localstorage, popupUtil, $state, $ionicSideMenuDelegate, profileManager, $cordovaCamera){
-    // $scope.$on('$ionicView.loaded', function() { //initialize
-    //   console.log('main.js loaded');
-    // });
-    //
+  .controller('MainController', function($scope, $rootScope, $localstorage, popupUtil, $state, $ionicSideMenuDelegate, profileManager, loadingUtil, memberManager, toastUtil, modalUtil){
+
+    // $scope.chkgetProfile = false; // 프로필 이미지 가져오기 한번실행위해,
+
     $scope.$on('$ionicView.beforeEnter', function(){ //initialize
       console.log('main.js beforeEnter');
-      $scope.setStorage();
-      $scope.getProfileData();
     });
-    $scope.$on('$ionicView.enter', function() { //initialize
-      console.log('main.js enter');
-    });
-    // $scope.$on('$ionicView.afterEnter', function(){ //initialize
-    //   console.log('main.js afterEnter');
-    // });
-    //
-    // $scope.$on('$ionicView.beforeLeave', function(){
-    //   console.log('main.js beforeLeave');
-    // });
-    $scope.$on('$ionicView.leave', function(){
-      console.log('main.js leave');
-    });
-    // $scope.$on('$ionicView.afterLeave', function(){
-    //   console.log('main.js afterLeave');
-    // });
 
-    // $scope.$on('$ionicView.unloaded', function(){
-    //   console.log('main.js unloaded');
-    // });
+    $scope.$on('$ionicView.beforeLeave', function(){
+      console.log('main.js beforeLeave');
+    });
 
-    $scope.getProfileData = function (){
-      profileManager.getProfile($localstorage.get("id")).then(
+    $scope.setStorage = function (){
+      $rootScope.localStorage.id = $localstorage.get('id');
+    };
+
+    $scope.getProfile = function (){
+      loadingUtil.showLoading();
+      profileManager.getProfile($rootScope.localStorage.id).then(
         function(data) {
-          $scope.profileSelect = data;
-          $scope.profileSelect.picture = $scope.profileSelect.picture + '?_ts=' + new Date().getTime();
+          $scope.profile = data;
+          $scope.updateImg = '?_ts=' + new Date().getTime();
+
+            // $scope.chkgetProfile = true;
+          // }
+          loadingUtil.hideLoading();
         },
         function(error) {
           console.log(error);
@@ -60,88 +52,49 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
       },
       function (isOpen) {
         if (isOpen){
-          if($localstorage.get("id") != null){
-            $scope.getProfileData();
+          if($rootScope.localStorage.id != 'null'){
+            // if($scope.chkgetProfile == false){
+               $scope.getProfile();
+            // } else {
+            //    $scope.updateImg = '?_ts=' + new Date().getTime();
+            // }
           }
+          console.log("open");
         } else{
           console.log("close");
         }
       });
-
-
-
-    $scope.localStorage = {};
-
-    $scope.setStorage = function() {
-      $scope.localStorage.id = $localstorage.get("id");
-    };
 
     $scope.showLogoutPopup = function () {
       popupUtil.showLogoutPopup($scope);
     };
 
     $scope.logout = function() {
-      $localstorage.set("id", null);
-      $scope.setStorage();
-      $state.go('main.home');
-      $ionicSideMenuDelegate.toggleLeft(false);
+      $scope.UpdateTokenMember();
     };
 
+    $scope.UpdateTokenMember = function () {
+      $scope.member = {id : $rootScope.localStorage.id, token : null};
+      loadingUtil.showLoading();
+      memberManager.UpdateTokenMember($scope.member).then(
+        function (data) {
+          $scope.chkgetProfile = false;
+          $localstorage.set("id", null);
+          $scope.setStorage();
+          $ionicSideMenuDelegate.toggleLeft(false);
+          toastUtil.showShortBottomToast('로그아웃 되었습니다.');
+          loadingUtil.hideLoading();
+          $state.go('main.home');
+        },
+        function (error) {
+          console.log(error);
+        });
+    };
 
-
-    $scope.choosePhoto = function () {
-      var options = {
-        quality: 100,
-        destinationType: Camera.DestinationType.FILE_URI,
-        sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
-        allowEdit: true,
-        encodingType: Camera.EncodingType.PNG,
-        targetWidth: 400,
-        targetHeight: 400,
-        popoverOptions: CameraPopoverOptions,
-        saveToPhotoAlbum: false,
-        correctOrientation:true
-      };
-
-      $cordovaCamera.getPicture(options).then(function (imageData) {
-        // $scope.imgURI = "data:image/jpeg;base64," + imageData;
-        console.log(imageData);
-
-        window.resolveLocalFileSystemURL(imageData, gotFile, fail);
-
-        function fail(e) {
-          alert('Cannot found requested file');
-        }
-
-        function gotFile(fileEntry) {
-          fileEntry.file(function(file) {
-            var reader = new FileReader();
-            reader.onloadend = function(e) {
-              var formData = new FormData();
-              var imgBlob = new Blob([this.result], {type : file.type});
-              formData.append('id', $localstorage.get("id"));
-              formData.append('picture', imgBlob, file.name);
-              $scope.setProfilePictureUpdate(formData);
-
-            };
-            // The most important point, use the readAsDatURL Method from the file plugin
-            reader.readAsArrayBuffer(file);
-          });
-        }
-
-        $scope.setProfilePictureUpdate = function (formData) {
-          console.log(formData);
-          profileManager.setProfilePicture(formData).then(
-            function(data) {
-              $scope.getProfileData();
-
-            },
-            function(error) {
-              console.log(error);
-            }
-          );
-        }
-      });
+    $scope.ShowImageDetail = function(animation) {
+        $scope.updateImg = '?_ts=' + new Date().getTime();
+        $scope.imageUrl = $scope.profile.p_picture + $scope.updateImg;
+        modalUtil.showModal(animation, 'img-detail.html', $scope);
     };
 
   });

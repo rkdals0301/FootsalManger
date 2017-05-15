@@ -7,32 +7,36 @@
     <ion-refresher
       on-refresh="doRefresh()">
     </ion-refresher>
-    <div class="item item-divider">지역선택</div>
+
     <ion-list>
-      <span class="item item-icon-right" ng-click="showCity('slideInDown',0)">
+
+      <div class="item item-divider">지역선택</div>
+      <span class="item item-icon-right" ng-click="showCity('fadeInDownBig',0)">
         지역 선택 : {{location.city}}
         <i class="icon ion-location"></i>
       </span>
-      <span class="item item-icon-right" ng-click="showCity('slideInDown',1)" ng-show="location.city != '전체'">
+      <span class="item item-icon-right" ng-click="showCity('fadeInDownBig',1)" ng-show="location.city != '전체'">
         구 선택 : {{location.gu}}
         <i class="icon ion-location"></i>
       </span>
+
       <div class="item item-divider">용병선택</div>
-      <ion-item collection-repeat="recruitment in recruitmentList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', recruitment.idx)">
-        <img ng-src="{{recruitment.regpicture + updateImg}}">
+      <ion-item collection-repeat="recruitment in recruitmentList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', recruitment.idx)" ng-switch on= "recruitment.opp_YN">
+        <img ng-src="{{recruitment.regp_picture + updateImg}}">
         <h3>닉네임 : {{recruitment.regnickname }}</h3>
-        <h3>나이 : {{recruitment.regage}}</h3>
-        <h4>사는 곳 : {{recruitment.reglocation}}</h4>
-        <div ng-switch on= "recruitment.opp_YN">
-          <div ng-switch-when="1">
-            <h4 ng-if="recruitment.reg_YN == 1">용병모집 완료</h4>
-            <h4 ng-if="recruitment.reg_YN == 0">용병모집 중</h4>
-          </div>
-          <div ng-switch-when="0">
-            <h4>용병 대기중</h4>
-          </div>
+        <h4>나이 : {{recruitment.regage}}</h4>
+        <h4>포지션 : {{recruitment.regposition}}</h4>
+        <h4>위치 : {{recruitment.regcity}} {{recruitment.reggu}}</h4>
+        <div ng-switch-when="1">
+            <span class="badge badge-stable" ng-if="recruitment.reg_YN == 1">용병모집 완료</span>
+            <span class="badge badge-positive" ng-if="recruitment.reg_YN == 0">용병모집 중</span>
         </div>
+        <div ng-switch-when="0">
+            <span class="badge badge-assertive">용병 대기중</span>
+        </div>
+
       </ion-item>
+
     </ion-list>
 
     <!--<ion-infinite-scroll ng-if="canWeLoadMoreContent()" on-infinite="populateList()" distance="10%"></ion-infinite-scroll>-->

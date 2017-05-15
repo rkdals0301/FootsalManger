@@ -7,13 +7,19 @@ angular.module('app.main.community.controller', [])
         views: {
           'content': {
             templateUrl: 'templates/community.html',
-            controller: 'communityController'
+            controller: 'CommunityController'
           }
         }
       });
   })
 
-  .controller('communityController', function($scope){
-    // Load the modal from the given template URL
+  .controller('CommunityController', function($scope){
+    $scope.$on('$ionicView.beforeEnter', function(){ //initialize
+      console.log('community.js beforeEnter');
+    });
+
+    $scope.$on('$ionicView.beforeLeave', function(){
+      console.log('community.js beforeLeave');
+    });
   });
 

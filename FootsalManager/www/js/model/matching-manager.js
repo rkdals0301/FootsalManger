@@ -2,14 +2,14 @@ angular.module('app.matching.manager', ['app.http.connector'])
 
   .service('matchingManager', function($q, httpConnector, ApiEndpoint) {
 
-    this.getMatchingList = function(location) {
+    this.getMatchingLocationList = function(location) {
       var locations = {
         'city' : location.city,
         'gu' : location.gu
       };
 
       var defer = $q.defer();
-      var url = ApiEndpoint.url +'/matches';
+      var url = ApiEndpoint.url +'/matches/location';
 
       httpConnector.getData(url, {params: locations}).then(
         function(data) {
@@ -23,7 +23,25 @@ angular.module('app.matching.manager', ['app.http.connector'])
       return defer.promise;
     };
 
-    this.getMatchingSelect = function(idx) {
+
+    this.getMatchingIdList = function(id) {
+
+      var defer = $q.defer();
+      var url = ApiEndpoint.url +'/matches/'+ id + '/list';
+
+      httpConnector.get(url).then(
+        function(data) {
+          defer.resolve(data.data);
+        },
+        function(error) {
+          console.log(error);
+          defer.reject(data.data);
+        }
+      );
+      return defer.promise;
+    };
+
+    this.getMatching = function(idx) {
       var defer = $q.defer();
       var url = ApiEndpoint.url + '/matches/' + idx;
 

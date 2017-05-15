@@ -2,9 +2,9 @@ angular.module('app.location.manager', ['app.http.connector'])
 
   .service('locationManager', function($q, httpConnector, ApiEndpoint) {
 
-    this.getLocationList = function() {
+    this.getLocationCityList = function() {
       var defer = $q.defer();
-      var url = ApiEndpoint.url + '/locations';
+      var url = ApiEndpoint.url + '/locations/city';
 
       httpConnector.get(url).then(
         function(data) {
@@ -18,9 +18,9 @@ angular.module('app.location.manager', ['app.http.connector'])
       return defer.promise;
     };
 
-    this.getLocation = function(city) {
+    this.getLocationGuList = function(city) {
       var defer = $q.defer();
-      var url = ApiEndpoint.url + '/locations/' + city;
+      var url = ApiEndpoint.url + '/locations/gu/' + city;
 
       httpConnector.get(url).then(
         function(data) {

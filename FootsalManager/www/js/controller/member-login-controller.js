@@ -1,4 +1,4 @@
-angular.module('app.login.controller', ['app.member.manager','app.popup.util','app.loading.util','app.login.manager']) //tabSlideBox 'ngMaterial'
+angular.module('app.main.login.controller', [])
 
   .config(function($stateProvider){
     $stateProvider
@@ -7,62 +7,62 @@ angular.module('app.login.controller', ['app.member.manager','app.popup.util','a
         views: {
           'content': {
             templateUrl: 'templates/member-login.html',
-            controller: 'LoginController'
+            controller: 'Member-LoginController'
           }
         }
       });
   })
 
-    .controller('LoginController', function($scope, memberManager, loadingUtil, $localstorage, $state){
-    // $scope.$on('$ionicView.loaded', function() { //initialize
-    //   console.log('Login.js loaded');
-    // });
+    .controller('Member-LoginController', function($scope, memberManager, loadingUtil, $rootScope, $state, toastUtil, $localstorage){
 
-    // $scope.$on('$ionicView.beforeEnter', function(){ //initialize
-    //   console.log('Login.js beforeEnter');
-    // });
-    $scope.$on('$ionicView.enter', function() { //initialize
-      console.log('Login.js enter');
+    $scope.$on('$ionicView.beforeEnter', function(){ //initialize
+      console.log('Member-Login.js beforeEnter');
+      $scope.member = {id: '', password : '', token : $rootScope.localStorage.token};
     });
-    // $scope.$on('$ionicView.afterEnter', function(){ //initialize
-    //   console.log('Login.js afterEnter');
-    // });
-    //
-    // $scope.$on('$ionicView.beforeLeave', function(){
-    //   console.log('Login.js beforeLeave');
-    // });
-    $scope.$on('$ionicView.leave', function(){
-      console.log('Login.js leave');
-      $scope.member = {id: null, password : null};
 
+    $scope.$on('$ionicView.beforeLeave', function(){
+      console.log('Member-Login.js beforeLeave');
+      $scope.member = {id: '', password : '', token : ''};
     });
-    // $scope.$on('$ionicView.afterLeave', function(){
-    //   console.log('Login.js afterLeave');
-    // });
 
-    // $scope.$on('$ionicView.unloaded', function(){
-    //   console.log('Login.js unloaded');
-    // });
-    $scope.member = {id: null, password : null};
+    $scope.LoginMember = function () {
+        if($scope.member.id == ''){
+          toastUtil.showShortBottomToast('아이디를 입력해주세요.');
+        } else if ($scope.member.password == ''){
+          toastUtil.showShortBottomToast('비밀번호를 입력해주세요.');
+        } else {
+          $scope.checkLoginMember();
+        }
+      };
 
-    $scope.SelectMemberData = function () {
+    $scope.checkLoginMember = function () {
       loadingUtil.showLoading();
-      memberManager.getMember($scope.member.id).then(
+      memberManager.checkLoginMember($scope.member).then(
         function (data) {
           $scope.getMember = data;
-          if($scope.getMember.id != null){
-            if($scope.getMember.password == $scope.member.password){
-              console.log("로그인되었습니다.");
-              $localstorage.set("id", $scope.getMember.id);
-              console.log($localstorage.get("id"));
-              $state.go('main.home');
-            } else {
-              console.log("비밀번호를 틀리셨습니다.");
-            }
-          } else {
-            console.log("없는아이디");
+          if($scope.getMember == 1){ // 로그인 가능
+            $scope.UpdateTokenMember();
+          } else if($scope.getMember == 2){ // 존재하지 않는 아이디
+            toastUtil.showShortBottomToast('존재하지 않는 아이디 입니다.');
+            loadingUtil.hideLoading();
+          } else if($scope.getMember == 0){ // 비밀번호 틀림
+            toastUtil.showShortBottomToast('비밀번호가 틀렸습니다.');
+            loadingUtil.hideLoading();
           }
+        },
+        function (error) {
+          console.log(error);
+        });
+    };
+
+    $scope.UpdateTokenMember = function () {
+      memberManager.UpdateTokenMember($scope.member).then(
+        function (data) {
+          $localstorage.set("id", $scope.member.id);
+          $scope.setStorage();
+          toastUtil.showShortBottomToast('로그인 되었습니다.');
           loadingUtil.hideLoading();
+          $state.go('main.home');
         },
         function (error) {
           console.log(error);

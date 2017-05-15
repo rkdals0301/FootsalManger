@@ -1,16 +1,37 @@
-<ion-modal-view ng-controller="Matching-createController">
+<ion-modal-view ng-controller="Matching-CreateController">
   <ion-header-bar align-title="center" class="bar-positive">
     <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
-    <h1 class="title">Matching Detail</h1>
+    <h1 class="title">Matching Create</h1>
   </ion-header-bar>
 
   <ion-content class="has-header">
-
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">reghopeTime</span>
+        <input type="text" placeholder="Date" ng-model="matching.reghopeTime">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regContent</span>
+        <input type="text" placeholder="Content" ng-model="matching.regcontent">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regCity</span>
+        <input type="text" placeholder="City" ng-model="matching.regcity">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regGu</span>
+        <input type="text" placeholder="Gu" ng-model="matching.reggu">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regTeamNum</span>
+        <input type="number" placeholder="Num" ng-model="matching.regteamnum">
+      </label>
+    </div>
   </ion-content>
 
   <ion-footer-bar class="bar-positive footer-bar">
     <div class="button-bar">
-      <button class="button button-clear" ng-click="setData()">Submit</button>
+      <button class="button button-clear" ng-click="SubmitMatching()" ng-disabled="localStorage.id == 'null'">Submit</button>
     </div>
   </ion-footer-bar>
 

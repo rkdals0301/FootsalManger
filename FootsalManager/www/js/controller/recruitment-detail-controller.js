@@ -1,64 +1,89 @@
-angular.module('app.main.recruitment.detail.controller', ['app.recruitment.manager', 'app.popup.util','app.loading.util'])
+angular.module('app.main.recruitment.detail.controller', [])
 
-  .controller('Recruitment-detailController', function($scope, recruitmentManager, $localstorage, $ionicPopup, popupUtil, loadingUtil){
+  .controller('Recruitment-DetailController', function($scope, recruitmentManager, $rootScope, popupUtil, loadingUtil, $timeout){
 
+    $scope.buttonBar = false;
     $scope.registerName = "신청";
-    $scope.cancelShow = false;
     $scope.registerShow = false;
-    $scope.stateName = "매칭 중";
+    $scope.cancelShow = false;
+    $scope.stateName = "용병 모집 중";
     $scope.stateShow = false;
-    $scope.localStorage = {};
-    $scope.localStorage.id = $localstorage.get("id");
+    $scope.chkShowLoading = false;
 
-    function Init() {
-      $scope.getRecruitmentData();
-    };
+    $scope.$on('modal.shown', function(){
+      $scope.refreshBtn();
+      $timeout(function () { // 0.2sec later buttonBar show
+        $scope.buttonBar = true;
+      }, 200, true );
+    });
 
-    $scope.getRecruitmentData = function (){
-      loadingUtil.showLoading();
-      recruitmentManager.getRecruitment($scope.idx).then(
+    $scope.getRecruitment = function (){
+      if($scope.showLoading == true){
+      } else if ($scope.showLoading == false){
+        loadingUtil.showLoading($scope.chkShowLoading);
+      }
+      $scope.buttonBar = false;
+      recruitmentManager.getRecruitment($scope.recruitment.idx).then(
         function(data) {
           $scope.recruitment = data;
-          loadingUtil.hideLoading();
-          $scope.refreashBtn();
+          $scope.refreshBtn();
+          loadingUtil.hideLoading($scope.chkShowLoading);
+          $timeout(function () { // 0.2sec later buttonBar show
+            $scope.buttonBar = true;
+          }, 200, true );
         },
         function(error) {
-          loadingUtil.hideLoading();
           console.log(error);
         }
       );
     };
 
-    Init();
-
-    $scope.putRecruitmentData  = function () {
-      loadingUtil.showLoading();
+    $scope.putRecruitment  = function () {
+      loadingUtil.showLoading($scope.chkShowLoading);
       recruitmentManager.putRecruitment($scope.recruitment).then(
         function (data) {
-          $scope.getRecruitmentData();
-          loadingUtil.hideLoading();
+          $scope.getRecruitment();
         },
         function (error) {
-          loadingUtil.hideLoading();
           console.log(error);
         });
     };
 
 
-    $scope.deleteRecruitmentData = function () {
-      loadingUtil.showLoading();
+    $scope.deleteRecruitment = function () {
+      loadingUtil.showLoading($scope.chkShowLoading);
       recruitmentManager.deleteRecruitment($scope.recruitment.idx).then(
         function (data) {
-          loadingUtil.hideLoading();
+          loadingUtil.hideLoading($scope.chkShowLoading);
+          $scope.modal.remove();
         },
         function (error) {
-          loadingUtil.hideLoading();
           console.log(error);
         });
     };
 
-    $scope.refreashBtn = function() {
-      if($scope.recruitment.regid ==  $localstorage.get("id")){
+    $scope.refreshBtn = function() {
+      if($rootScope.localStorage.id == 'null'){
+        if($scope.matching.opp_YN != 1){
+          $scope.stateName = "용병 대기 중";
+          $scope.stateShow = true;
+          $scope.registerShow = false;
+          $scope.cancelShow = false;
+        } else {
+          if($scope.matching.reg_YN == 1){
+            $scope.stateName = "용병 모집 완료";
+            $scope.stateShow = true;
+            $scope.registerShow = false;
+            $scope.cancelShow = false;
+          } else {
+            $scope.stateName = "용병 모집 중";
+            $scope.stateShow = true;
+            $scope.registerShow = false;
+            $scope.cancelShow = false;
+          }
+        }
+      }
+      else if($scope.recruitment.regid ==  $rootScope.localStorage.id){
         if($scope.recruitment.opp_YN != 1){ //용병대기
           //신청 x 취소 x
           $scope.registerShow = false;
@@ -82,7 +107,7 @@ angular.module('app.main.recruitment.detail.controller', ['app.recruitment.manag
           }
         }
       }
-      else if ($scope.recruitment.regid != $localstorage.get("id")){ // 등록한게시글 아이디와  내아이디가 같지않을때,
+      else if ($scope.recruitment.regid != $rootScope.localStorage.id){ // 등록한게시글 아이디와  내아이디가 같지않을때,
         if($scope.recruitment.opp_YN != 1){
           //신청 ㅇ
           $scope.cancelShow = false;
@@ -91,7 +116,7 @@ angular.module('app.main.recruitment.detail.controller', ['app.recruitment.manag
           $scope.stateShow = false;
         }
         else if($scope.recruitment.opp_YN == 1){
-          if($scope.recruitment.oppid == $localstorage.get("id")){
+          if($scope.recruitment.oppid == $rootScope.localStorage.id){
             //취소 ㅇ
             if($scope.recruitment.reg_YN == 1){
               $scope.registerShow = false;
@@ -122,14 +147,14 @@ angular.module('app.main.recruitment.detail.controller', ['app.recruitment.manag
     };
 
     $scope.PositiveBtn = function() {
-      if($scope.recruitment.regid ==  $localstorage.get("id")){
+      if($scope.recruitment.regid ==  $rootScope.localStorage.id){
         $scope.recruitment.reg_YN = 1;
       }
-      else if ($scope.recruitment.regid != $localstorage.get("id")){
-        $scope.recruitment.oppid = $localstorage.get("id");
+      else if ($scope.recruitment.regid != $rootScope.localStorage.id){
+        $scope.recruitment.oppid = $rootScope.localStorage.id;
         $scope.recruitment.opp_YN = 1;
       }
-      $scope.putRecruitmentData();
+      $scope.putRecruitment();
     };
 
     $scope.negativeBtn = function (){
@@ -140,10 +165,11 @@ angular.module('app.main.recruitment.detail.controller', ['app.recruitment.manag
       $scope.recruitment.oppphone = null;
       $scope.recruitment.oppemblem = null;
 
-      $scope.putRecruitmentData();
+      $scope.putRecruitment();
     };
 
     $scope.showDeletePopup = function () {
       popupUtil.showDeletePopup($scope, "recruitment");
-    }
+    };
+
   });
