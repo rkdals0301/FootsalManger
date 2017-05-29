@@ -1,6 +1,5 @@
   angular.module('app.main.matching.controller', ['app.main.matching.create.controller','app.main.matching.detail.controller'
     ,'app.location.controller','app.main.matching.mymatching.controller'
-    ,'app.modal.util'
     ,'app.matching.manager'
     ,'ion-floating-menu'])
 
@@ -17,7 +16,7 @@
       });
   })
 
-  .controller('MatchingController', function($scope, $rootScope, matchingManager, modalUtil, popupUtil, loadingUtil, $timeout){
+  .controller('MatchingController', function($scope, $rootScope, matchingManager, modalUtil, loadingUtil, $timeout){
     // 0 : city, 1 : gu
     $scope.locatonChk = 0;
     $scope.location = {city : '전체', gu : '전체'};
@@ -60,7 +59,10 @@
           $scope.matchingIdList = data;
           $scope.updateImg = '?_ts=' + new Date().getTime();
           $timeout(function () {
-            modalUtil.showModal(animation, 'matching-mymatching.html', $scope);
+            modalUtil.init(animation,'matching-mymatching.html', $scope).then(function(modal) {
+              modal.show();
+              $scope.modalB = modal;
+            });
           }, 200, true );
           loadingUtil.hideLoading();
         },
@@ -77,7 +79,10 @@
           $scope.matching = data;
           $scope.updateImg = '?_ts=' + new Date().getTime();
           $timeout(function () {
-            modalUtil.showModal(animation, 'matching-detail.html', $scope);
+            modalUtil.init(animation,'matching-detail.html', $scope).then(function(modal) {
+              modal.show();
+              $scope.modalA = modal;
+            });
           }, 200, true );
           loadingUtil.hideLoading();
         },
@@ -92,12 +97,18 @@
     };
 
     $scope.showCreate = function(animation){
-      modalUtil.showModal(animation, 'matching-create.html', $scope);
+      modalUtil.init(animation,'matching-create.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
     $scope.showCity = function(animation, chkClick){
       $scope.locatonChk = chkClick;
-      modalUtil.showModal(animation, 'location.html', $scope);
+      modalUtil.init(animation,'location.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
     $scope.$on('modal.removed', function() {

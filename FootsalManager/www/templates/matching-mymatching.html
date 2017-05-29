@@ -1,13 +1,13 @@
 <ion-modal-view ng-controller="Matching-MyMatchingController">
   <ion-header-bar align-title="center" class="bar-positive">
-    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalUtil.closeModal()"></button>
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalB.remove()"></button>
     <h1 class="title">Matching-MyMatching</h1>
   </ion-header-bar>
-  <ion-content  class="has-header padding">
+  <ion-content class="has-header padding" overflow-scroll="false" scrollbar-y="false">
 
     <ion-list>
       <div class="item item-divider">나의매칭</div>
-      <ion-item collection-repeat="matchIdList in matchingIdList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', matchIdList.idx)" ng-switch on= "matchIdList.opp_YN">
+      <ion-item ng-repeat="matchIdList in matchingIdList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', matchIdList.idx)" ng-switch on= "matchIdList.opp_YN">
         <img ng-src="{{matchIdList.regt_picture + updateImg}}">
         <h3>팀이름 : {{matchIdList.regt_name}}</h3>
         <h4>매칭 시간 : {{matchIdList.reghopeTime}}</h4>

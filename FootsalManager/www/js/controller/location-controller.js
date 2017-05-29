@@ -45,7 +45,7 @@ angular.module('app.location.controller', ['app.location.manager'])
       } else if ($scope.locatonChk == 1){
         $scope.location.gu = $scope.choiceLocation.gu;
       }
-      $scope.modal.remove();
+      $scope.modalA.remove();
     };
 
   });

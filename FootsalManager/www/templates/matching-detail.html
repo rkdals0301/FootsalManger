@@ -1,23 +1,50 @@
 <ion-modal-view ng-controller="Matching-DetailController">
     <ion-header-bar align-title="center" class="bar-positive">
-        <button class="button button-icon icon ion-arrow-left-c" ng-click="modalUtil.closeModal()"></button>
+        <button class="button button-icon icon ion-arrow-left-c" ng-click="modalA.remove()"></button>
         <h1 class="title">Matching Detail</h1>
         <button class="button button-icon icon ion-trash-b" ng-if="matching.regid == localStorage.id" ng-click="showDeletePopup()"></button>
     </ion-header-bar>
-    <ion-content>
+    <ion-content class="has-header padding">
+
+      <!--<div class="card">-->
+        <!--<div class="item item-avatar">-->
+          <!--<img ng-src="{{matching.regt_picture + updateImg}}" style="border:1px solid black;">-->
+          <!--<h4>팀이름 : {{matching.regt_name}}</h4>-->
+          <!--<h4>내용 : {{matching.regcontent}}</h4>-->
+          <!--<h4>인원 : {{matching.regteamnum}}명</h4>-->
+          <!--<h4>매칭 지역 : {{matching.regcity}} {{matching.reggu}}</h4>-->
+          <!--<h4>경기 날짜 : {{matching.reghopeTime}}</h4>-->
+          <!--<h4 ng-if="(matching.opp_YN == 1) && (matching.reg_YN == 1) && (matching.oppid == localStorage.id)">-->
+            <!--전화번호 : {{matching.regphone}}-->
+          <!--</h4>-->
+        <!--</div>-->
+
+      <!--</div>-->
 
       <div class="card">
-        <div class="item item-avatar">
-          <img ng-src="{{matching.regt_picture + updateImg}}" style="border:1px solid black;">
-          <h4>팀이름 : {{matching.regt_name}}</h4>
-          <h4>내용 : {{matching.regcontent}}</h4>
-          <h4>인원 : {{matching.regteamnum}}명</h4>
-          <h4>매칭 지역 : {{matching.regcity}} {{matching.reggu}}</h4>
-          <h4>경기 날짜 : {{matching.reghopeTime}}</h4>
-          <h4 ng-if="(matching.opp_YN == 1) && (matching.reg_YN == 1) && (matching.oppid == localStorage.id)">
-            전화번호 : {{matching.regphone}}
-          </h4>
+        <div class="item item-thumbnail-left">
+          <img ng-src="{{matching.regt_picture + updateImg}}">
+          <div class="row">
+            <span class="col col-50" style="font-size:13px; padding: 0px;">팀이름 : {{matching.regt_name}}</span>
+            <span class="col col-50" style="font-size:13px; padding: 0px;">경기날짜 : {{matching.reghopeTime}}
+              </span>
+          </div>
+          <div class="row">
+            <span class="col col-50" style="font-size:13px; padding: 0px;">인원: {{matching.regteamnum}}명</span>
+            <span class="col col-50" style="font-size:13px; padding: 0px;">매칭지역 : {{matching.regcity}} {{matching.reggu}}</span>
+          </div>
         </div>
+        <div class="item item-body">
+          <p>
+            내용 : {{matching.regcontent}}
+          </p>
+        </div>
+
+        <a class="item item-icon-left assertive" ng-if="(matching.opp_YN == 1) && (matching.reg_YN == 1) && (matching.oppid == localStorage.id)" href="tel:{{matching.regphone}}">
+          <i class="icon ion-android-call"></i>
+          전화번호 : {{matching.regphone}}
+        </a>
+
       </div>
 
       <!--<div class="list card">-->
@@ -49,14 +76,35 @@
 
       <h1 ng-if="matching.opp_YN == 1" style="text-align: center; color:red;">VS</h1>
 
+      <!--<div class="card" ng-if="matching.opp_YN == 1">-->
+        <!--<div class="item item-avatar">-->
+          <!--<img ng-src="{{matching.oppt_picture + updateImg}}" style="border:1px solid black;">-->
+          <!--<h4>팀이름 : {{matching.oppt_name}}</h4>-->
+          <!--<h4 ng-if="matching.opp_YN == 1 && matching.reg_YN == 1 && (matching.regid == localStorage.id)">-->
+            <!--전화번호 : {{matching.oppphone}}-->
+          <!--</h4>-->
+        <!--</div>-->
+      <!--</div>-->
+
       <div class="card" ng-if="matching.opp_YN == 1">
-        <div class="item item-avatar">
-          <img ng-src="{{matching.oppt_picture + updateImg}}" style="border:1px solid black;">
-          <h4>팀이름 : {{matching.oppt_name}}</h4>
-          <h4 ng-if="matching.opp_YN == 1 && matching.reg_YN == 1 && (matching.regid == localStorage.id)">
-            전화번호 : {{matching.oppphone}}
-          </h4>
+        <div class="item item-thumbnail-left">
+          <img ng-src="{{matching.oppt_picture + updateImg}}">
+          <div class="row">
+            <span class="col col-75" style="font-size:13px; padding: 0px;">팀이름 : {{matching.regt_name}}</span>
+            <span class="col col-25" style="font-size:13px;padding: 0px;"></span>
+          </div>
         </div>
+        <!--<div class="item item-body">-->
+          <!--<p>-->
+            <!--내용 : {{matching.regcontent}}-->
+          <!--</p>-->
+        <!--</div>-->
+
+        <a class="item item-icon-left assertive" ng-if="matching.opp_YN == 1 && matching.reg_YN == 1 && (matching.regid == localStorage.id)" href="tel:{{matching.oppphone}}">
+          <i class="icon ion-android-call"></i>
+          전화번호 : {{matching.oppphone}}
+        </a>
+
       </div>
 
     </ion-content>

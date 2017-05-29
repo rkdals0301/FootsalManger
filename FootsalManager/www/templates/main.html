@@ -16,41 +16,41 @@
     </ion-header-bar>
     <ion-content overflow-scroll="false" scrollbar-y="false">
       <ion-list>
-        <ion-item menu-close href="#/main/login" class="item-icon-left" ng-show="localStorage.id == 'null'">
+        <ion-item menu-toggle="left" href="#/main/login" class="item-icon-left" ng-show="localStorage.id == 'null'">
           <i class="icon ion-power"></i>로그인
         </ion-item>
-        <ion-item menu-close href="#/main/register" class="item-icon-left" ng-show="localStorage.id == 'null'">
+        <ion-item menu-toggle="left" href="#/main/register" class="item-icon-left" ng-show="localStorage.id == 'null'">
           <i class="icon ion-key"></i>회원가입
         </ion-item>
         <ion-item  class="item" ng-show="localStorage.id != 'null'">
-            <img class="circular--square" ng-src="{{profile.p_picture + updateImg}}" ng-click="ShowImageDetail('fadeIn')">
+          <img class="circular--square" ng-src="{{profile.p_picture + updateImg}}" ng-click="ShowImageDetail('fadeIn')">
           <h3 style="text-align: center; margin-top:15px;">{{profile.nickname}}</h3>
         </ion-item>
-        <ion-item menu-close href="#/main/home" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/home" class="item-icon-left">
           <i class="icon ion-home"></i>홈
         </ion-item>
-        <ion-item menu-close href="#/main/profile" class="item-icon-left" ng-show="localStorage.id != 'null'">
+        <ion-item menu-toggle="left" href="#/main/profile" class="item-icon-left" ng-show="localStorage.id != 'null'">
           <i class="icon ion-person"></i>프로필
         </ion-item>
-        <ion-item menu-close href="#/main/team" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/team" class="item-icon-left">
           <i class="icon ion-person-stalker"></i>팀
         </ion-item>
-        <ion-item menu-close href="#/main/reservation" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/reservation" class="item-icon-left">
           <i class="icon ion-calendar"></i>예약
         </ion-item>
-        <ion-item menu-close href="#/main/matching" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/matching" class="item-icon-left">
           <i class="icon ion-trophy"></i>매칭
         </ion-item>
-        <ion-item menu-close href="#/main/recruitment" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/recruitment" class="item-icon-left">
           <i class="icon ion-flag"></i>용병모집
         </ion-item>
-        <ion-item menu-close href="#/main/community" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/community" class="item-icon-left">
           <i class="icon ion-chatboxes"></i>커뮤니티
         </ion-item>
         <ion-item class="item-icon-left" ng-click="showLogoutPopup()" ng-show="localStorage.id != 'null'">
           <i class="icon ion-unlocked"></i>로그아웃
         </ion-item>
-        <ion-item menu-close href="#/main/tip" class="item-icon-left">
+        <ion-item menu-toggle="left" href="#/main/tip" class="item-icon-left">
           <i class="icon ion-help"></i>도움말
         </ion-item>
       </ion-list>

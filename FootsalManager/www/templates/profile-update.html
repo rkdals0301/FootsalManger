@@ -1,6 +1,6 @@
 <ion-modal-view ng-controller="Profile-UpdateController">
   <ion-header-bar align-title="center" class="bar-positive">
-    <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalA.remove()"></button>
     <h1 class="title">Profile Update</h1>
   </ion-header-bar>
 
@@ -16,11 +16,11 @@
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Age</span>
-        <input type="number" placeholder="age" ng-model="profile.age">
+        <input type="tel" placeholder="age" ng-model="profile.age">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Phone</span>
-        <input type="number" placeholder="phone" ng-model="profile.phone">
+        <input type="tel" placeholder="phone" ng-model="profile.phone">
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Foot</span>
@@ -36,11 +36,11 @@
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Height</span>
-        <input type="number" placeholder="height" ng-model="profile.height">
+        <input type="tel" placeholder="height" ng-model="profile.height">
       </label>
       <label class="item item-input item-stacked-label">
       <span class="input-label">Weight</span>
-      <input type="number" placeholder="weight" ng-model="profile.weight">
+      <input type="tel" placeholder="weight" ng-model="profile.weight">
     </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Favorite_Stadium</span>

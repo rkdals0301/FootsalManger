@@ -1,5 +1,4 @@
 angular.module('app.main.reservation.controller', ['app.location.controller'
-  ,'app.modal.util'
   ,'app.reservation.manager'])
 
   .config(function($stateProvider){
@@ -38,11 +37,11 @@ angular.module('app.main.reservation.controller', ['app.location.controller'
       reservationManager.getReservationList($scope.location).then(
         function(data) {
           $scope.reservationList = data;
+          $scope.updateImg = '?_ts=' + new Date().getTime();
           loadingUtil.hideLoading();
           $scope.$broadcast('scroll.refreshComplete');
         },
         function(error) {
-          loadingUtil.hideLoading();
           console.log(error);
         }
       );
@@ -50,12 +49,14 @@ angular.module('app.main.reservation.controller', ['app.location.controller'
 
     $scope.showDetail = function(animation, idx){
       $scope.idx = idx;
-      // modalUtil.showModal(animation, 'matching-detail.html', $scope);
     };
 
     $scope.showCity = function(animation, chkClick){
       $scope.locatonChk = chkClick;
-      modalUtil.showModal(animation, 'location.html', $scope);
+      modalUtil.init(animation,'location.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
     $scope.$on('modal.removed', function() {

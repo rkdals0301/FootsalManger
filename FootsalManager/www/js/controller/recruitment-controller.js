@@ -1,6 +1,5 @@
 angular.module('app.main.recruitment.controller', ['app.location.controller','app.main.recruitment.create.controller'
     ,'app.main.recruitment.detail.controller'
-    ,'app.modal.util'
     ,'app.recruitment.manager' ])
 
   .config(function($stateProvider){
@@ -59,7 +58,10 @@ angular.module('app.main.recruitment.controller', ['app.location.controller','ap
           $scope.recruitment = data;
           $scope.updateImg = '?_ts=' + new Date().getTime();
           $timeout(function () {
-            modalUtil.showModal(animation, 'recruitment-detail.html', $scope);
+            modalUtil.init(animation,'recruitment-detail.html', $scope).then(function(modal) {
+              modal.show();
+              $scope.modalA = modal;
+            });
           }, 200, true );
           loadingUtil.hideLoading();
         },
@@ -70,16 +72,23 @@ angular.module('app.main.recruitment.controller', ['app.location.controller','ap
     };
 
     $scope.showDetail = function(animation, idx){
+
       $scope.getRecruitment  (animation, idx);
     };
 
     $scope.showCreate = function(animation){
-      modalUtil.showModal(animation, 'recruitment-create.html', $scope);
+      modalUtil.init(animation,'recruitment-create.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
     $scope.showCity = function(animation, chkClick){
       $scope.locatonChk = chkClick;
-      modalUtil.showModal(animation, 'location.html', $scope);
+      modalUtil.init(animation,'location.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
     $scope.$on('modal.removed', function() {

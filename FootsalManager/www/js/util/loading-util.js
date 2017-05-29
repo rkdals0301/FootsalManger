@@ -6,8 +6,7 @@ angular.module('app.loading.util', [])
       $ionicLoading.show({
         template: '<p>Loading...</p><ion-spinner></ion-spinner>',
         animation: 'fade-in',
-        showBackdrop: true,
-        delay : 200
+        noBackdrop: false
       }).then(function(){
         console.log("The loading indicator is now shown");
         chkShowLoading = true;

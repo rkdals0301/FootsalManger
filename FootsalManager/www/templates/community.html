@@ -1,5 +1,43 @@
 <ion-view view-title="Community">
-  <ion-content class="has-header">
-    <h2 style="text-align: center">커뮤니티</h2>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon icon ion-edit" ng-click="showCreate('slideInRight')"></button>
+  </ion-nav-buttons>
+  <ion-header-bar class="bar-subheader bar" style="padding:0px;">
+    <div class="button-bar bar-positive">
+      <div class="button" style="border-width: 1px;min-height:44px;line-height:44px;"  ng-class="{'active': check_c_category == 0}" ng-click="getCommunityList(0)">전체</div>
+      <div class="button" style="border-width: 1px;min-height:44px;line-height:44px;"  ng-class="{'active': check_c_category == 1}" ng-click="getCommunityList(1)">정보</div>
+      <div class="button" style="border-width: 1px;min-height:44px;line-height:44px;"  ng-class="{'active': check_c_category == 2}" ng-click="getCommunityList(2)">영상</div>
+      <div class="button" style="border-width: 1px;min-height:44px;line-height:44px;"  ng-class="{'active': check_c_category == 3}" ng-click="getCommunityList(3)">기타</div>
+    </div>
+  </ion-header-bar>
+
+  <ion-content class="has-header" style="padding-top:0px;">
+
+    <ion-refresher
+      on-refresh="doRefresh()">
+    </ion-refresher>
+
+    <div class="list card" ng-repeat="community in communityList"  ng-click="showDetail('slideInRight', community.c_no)" >
+
+      <div class="item item-avatar">
+        <img ng-src="{{community.regp_picture + updateImg}}">
+        <h2>등록자 : {{community.regid}}</h2>
+        <p>등록 날짜 : {{community.regdate}}</p>
+      </div>
+
+
+      <div class="item item-body">
+        <p>
+          내용 : {{community.content}}
+        </p>
+
+      </div>
+
+      <div class="item item-divider">
+        <a href="#" class="subdued">조회수 {{community.view_cnt}}</a>
+        <a href="#" class="subdued">댓글 {{community.reply_cnt}}</a>
+      </div>
+
+    </div>
   </ion-content>
 </ion-view>

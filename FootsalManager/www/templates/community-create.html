@@ -1,0 +1,38 @@
+<ion-modal-view ng-controller="Community-CreateController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalA.remove()"></button>
+    <h1 class="title">Community Create</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-header">
+    <div class="list">
+      <label class="item item-input item-select">
+        <span class="input-label">Category</span>
+
+        <select ng-model="community.c_category">
+          <option value="1" ng-selected="true">정보</option>
+          <option value="2">영상</option>
+          <option value="3">기타</option>
+        </select>
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">regContent</span>
+        <input type="text" placeholder="Content" ng-model="community.content">
+      </label>
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">file</span>
+        <input type="text" placeholder="File" ng-model="community.file">
+      </label>
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="bar-positive footer-bar">
+    <div class="button-bar">
+      <button class="button button-clear" ng-click="SubmitCommunity()" ng-disabled="localStorage.id == 'null'">Submit</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-modal-view>
+
+.

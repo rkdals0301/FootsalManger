@@ -1,27 +1,25 @@
 angular.module('app.modal.util', [])
 
-  .service('modalUtil', function($ionicModal) {
+  .service('modalUtil', function($ionicModal, $rootScope) {
 
-    this.showModal = function(animation, template, scope) {
-      var _this = this;
+    var init = function(animation, template, $scope) {
 
-        $ionicModal.fromTemplateUrl('templates/' + template, {
-          scope: scope,
-          animation: 'animated ' + animation,
-          backdropClickToClose: false
-        }).then(function (modal) {
-          _this.modal = modal;
-          _this.modal.show();
-          // scope.modal = modal;
-          // scope.modal.show();
-        });
-    };
-
-    this.closeModal = function() {
-      console.log('CloseModal');
-      var _this = this;
-      if(!_this.modal) return;
-      _this.modal.hide();
-      _this.modal.remove();
-    };
+      var promise;
+      $scope = $scope || $rootScope.$new();
+      promise = $ionicModal.fromTemplateUrl('templates/' + template, {
+        scope: $scope,
+        animation: 'animated ' + animation,
+        backdropClickToClose: false
+      }).then(function(modal) {
+        $scope.modal = modal;
+        return modal;
+      });
+      $scope.$on('$destroy', function() {
+        $scope.modal.remove();
+      });
+      return promise;
+    }
+    return {
+      init: init
+    }
   });

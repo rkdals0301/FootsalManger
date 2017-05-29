@@ -5,7 +5,7 @@ angular.module('app.main.profile.update.controller', [])
     $scope.putProfile = function () {
       profileManager.putProfile($scope.profile).then(
         function (data) {
-          $scope.modal.remove();
+          $scope.modalA.remove();
         },
         function (error) {
           console.log(error);

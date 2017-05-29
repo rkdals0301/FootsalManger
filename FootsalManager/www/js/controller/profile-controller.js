@@ -1,5 +1,4 @@
-angular.module('app.main.profile.controller', ['app.main.profile.update.controller'
-,'app.modal.util'])
+angular.module('app.main.profile.controller', ['app.main.profile.update.controller'])
 
   .config(function($stateProvider){
     $stateProvider
@@ -41,18 +40,18 @@ angular.module('app.main.profile.controller', ['app.main.profile.update.controll
         function(data) {
           $scope.profile = data;
           $scope.updateImg = '?_ts=' + new Date().getTime();
-          if($scope.profile.phone != null){
-            $scope.profile.phone = parseFloat($scope.profile.phone);
-          }
-          if($scope.profile.age != null){
-            $scope.profile.age = parseFloat($scope.profile.age);
-          }
-          if($scope.profile.height != null){
-            $scope.profile.height = parseFloat($scope.profile.height);
-          }
-          if($scope.profile.weight != null){
-            $scope.profile.weight = parseFloat($scope.profile.weight);
-          }
+          // if($scope.profile.phone != null){
+          //   $scope.profile.phone = parseFloat($scope.profile.phone);
+          // }
+          // if($scope.profile.age != null){
+          //   $scope.profile.age = parseFloat($scope.profile.age);
+          // }
+          // if($scope.profile.height != null){
+          //   $scope.profile.height = parseFloat($scope.profile.height);
+          // }
+          // if($scope.profile.weight != null){
+          //   $scope.profile.weight = parseFloat($scope.profile.weight);
+          // }
           loadingUtil.hideLoading($scope.chkShowLoading);
         },
         function(error) {
@@ -66,7 +65,10 @@ angular.module('app.main.profile.controller', ['app.main.profile.update.controll
     });
 
     $scope.showUpdate = function(animation){
-      modalUtil.showModal(animation, 'profile-update.html', $scope);
+      modalUtil.init(animation,'profile-update.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
 

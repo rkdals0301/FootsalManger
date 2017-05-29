@@ -22,7 +22,7 @@ angular.module('app.main.recruitment.create.controller', [])
         function (data) {
           toastUtil.showShortBottomToast('용병이 등록 되었습니다.');
           loadingUtil.hideLoading();
-          $scope.modal.remove();
+          $scope.modalA.remove();
         },
         function (error) {
           console.log(error);

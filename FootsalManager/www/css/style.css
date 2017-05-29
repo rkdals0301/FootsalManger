@@ -44,3 +44,22 @@ a {text-decoration: none !important;}
   top: 0 !important;
   left: 0 !important;
 }
+
+.button-bar > .button:last-child {
+  border-radius : 0px !important;
+}
+
+.button-bar > .button:first-child {
+  border-radius : 0px !important;
+}
+
+
+.button {
+  border-color:#387ef5 !important;
+}
+
+.bar{
+  border:0px !important;
+background-image: none !important;
+}
+

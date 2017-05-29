@@ -13,6 +13,25 @@ angular.module('app.main.team.controller', [])
       });
   })
 
+  .run(function($ionicPlatform, $ionicPopup,$state,$ionicHistory) {
+    // Disable BACK button on home
+    $ionicPlatform.registerBackButtonAction(function(event) {
+      // if (true) { // your check here
+      if($state.current.name=="main.home") {
+        $ionicPopup.confirm({
+          title: 'System warning',
+          template: 'are you sure you want to exit?'
+        }).then(function(res) {
+          if (res) {
+            ionic.Platform.exitApp();
+          }
+        })
+      } else {
+        $ionicHistory.goBack();
+      }
+    }, 100);
+  })
+
   .controller('TeamController', function($scope){
 
     $scope.$on('$ionicView.beforeEnter', function(){ //initialize

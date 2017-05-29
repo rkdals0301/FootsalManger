@@ -21,6 +21,8 @@ angular.module('app.popup.util', [])
                 scope.deleteMatching();
               else if (category == "recruitment"){
                 scope.deleteRecruitment();
+              } else if (category == "community"){
+                scope.deleteCommunity();
               }
             }
           }

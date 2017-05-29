@@ -78,7 +78,7 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
       loadingUtil.showLoading();
       memberManager.UpdateTokenMember($scope.member).then(
         function (data) {
-          $scope.chkgetProfile = false;
+          // $scope.chkgetProfile = false;
           $localstorage.set("id", null);
           $scope.setStorage();
           $ionicSideMenuDelegate.toggleLeft(false);
@@ -94,7 +94,10 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
     $scope.ShowImageDetail = function(animation) {
         $scope.updateImg = '?_ts=' + new Date().getTime();
         $scope.imageUrl = $scope.profile.p_picture + $scope.updateImg;
-        modalUtil.showModal(animation, 'img-detail.html', $scope);
+        modalUtil.init(animation,'img-detail.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
     };
 
   });

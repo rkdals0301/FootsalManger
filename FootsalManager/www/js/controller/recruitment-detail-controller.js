@@ -55,7 +55,7 @@ angular.module('app.main.recruitment.detail.controller', [])
       recruitmentManager.deleteRecruitment($scope.recruitment.idx).then(
         function (data) {
           loadingUtil.hideLoading($scope.chkShowLoading);
-          $scope.modal.remove();
+          $scope.modalA.remove();
         },
         function (error) {
           console.log(error);
@@ -64,13 +64,13 @@ angular.module('app.main.recruitment.detail.controller', [])
 
     $scope.refreshBtn = function() {
       if($rootScope.localStorage.id == 'null'){
-        if($scope.matching.opp_YN != 1){
+        if($scope.recruitment.opp_YN != 1){
           $scope.stateName = "용병 대기 중";
           $scope.stateShow = true;
           $scope.registerShow = false;
           $scope.cancelShow = false;
         } else {
-          if($scope.matching.reg_YN == 1){
+          if($scope.recruitment.reg_YN == 1){
             $scope.stateName = "용병 모집 완료";
             $scope.stateShow = true;
             $scope.registerShow = false;

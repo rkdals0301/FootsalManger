@@ -1,6 +1,6 @@
 angular.module('app.main.matching.detail.controller', [])
 
-  .controller('Matching-DetailController', function($scope, $rootScope, matchingManager, popupUtil, loadingUtil, $timeout, modalUtil){
+  .controller('Matching-DetailController', function($scope, $rootScope, matchingManager, popupUtil, loadingUtil, $timeout){
 
     $scope.buttonBar = false;
     $scope.registerName = "신청";
@@ -54,7 +54,7 @@ angular.module('app.main.matching.detail.controller', [])
       matchingManager.deleteMatching($scope.matching.idx).then(
         function (data) {
           loadingUtil.hideLoading($scope.chkShowLoading);
-          $scope.modal.remove();
+          $scope.modalA.remove();
         },
         function (error) {
           console.log(error);
@@ -165,5 +165,6 @@ angular.module('app.main.matching.detail.controller', [])
     $scope.showDeletePopup = function () {
       popupUtil.showDeletePopup($scope, "matching");
     };
+
 
   });

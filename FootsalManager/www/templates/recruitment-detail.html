@@ -1,6 +1,6 @@
 <ion-modal-view ng-controller="Recruitment-DetailController">
   <ion-header-bar align-title="center" class="bar-positive">
-    <button class="button button-icon icon ion-arrow-left-c" ng-click="modal.remove()"></button>
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalA.remove()"></button>
     <h1 class="title">Recruitment-Detail</h1>
     <button class="button button-icon icon ion-trash-b" ng-if="recruitment.regid == localStorage.id" ng-click="showDeletePopup()"></button>
   </ion-header-bar>
@@ -8,28 +8,63 @@
     <div>
       <h4 class="positive" style="text-align: center">용병</h4>
     </div>
-    <div>
-      <img ng-src="{{recruitment.regp_picture + updateImg}}" style="margin-left:auto; margin-right:auto; max-width:100px; min-width:100px; display:block"> <!-- recruitment.regpicture-->
+    <div class="card">
+      <div class="item item-thumbnail-left">
+        <img ng-src="{{recruitment.regp_picture + updateImg}}">
+        <div class="row">
+          <span class="col col-75" style="font-size:13px; padding: 0px;">닉네임 : {{recruitment.regnickname}}</span>
+          <span class="col col-25" style="font-size:13px;padding: 0px;">나이 : {{recruitment.regage}}세</span>
+        </div>
+        <div class="row">
+          <span class="col col-75" style="font-size:13px;padding: 0px;">키 : {{recruitment.regheight}}cm</span>
+          <span class="col col-25" style="font-size:13px;padding: 0px;">포지션 : {{recruitment.regposition}}</span>
+        </div>
+        <div class="row">
+          <span class="col col-75" style="font-size:13px;padding: 0px;">몸무게 : {{recruitment.regweight}}Kg</span>
+          <span class="col col-25" style="font-size:13px;padding: 0px;">주발 : {{recruitment.regfoot}}</span>
+        </div>
+        <div class="row">
+          <span class="col col-75" style="font-size:13px;padding: 0px;">원하는 곳 : {{recruitment.regcity}} {{recruitment.reggu}}</span>
+          <span class="col col-25" style="font-size:13px;padding: 0px;"></span>
+        </div>
+      </div>
+      <div class="item item-body">
+          <p>
+            내용 : {{recruitment.regcontent}}
+          </p>
+      </div>
 
-      <h5 style="text-align: center">닉네임 : {{recruitment.regnickname}}</h5>
-      <h5 style="text-align: center">나이 : {{recruitment.regage}}</h5>
-      <h5 style="text-align: center">주발 : {{recruitment.regfoot}}</h5>
-      <h5 style="text-align: center">포지션 : {{recruitment.regposition}}</h5>
-      <h5 style="text-align: center">원하는 곳 : {{recruitment.regcity}} {{recruitment.reggu}} </h5>
-      <h5 style="text-align: center">키 : {{recruitment.regheight}}</h5>
-      <h5 style="text-align: center">몸무게 : {{recruitment.regweight}}</h5>
-      <h5 style="text-align: center">내용 : {{recruitment.regcontent}}</h5>
-      <h5 style="text-align: center" ng-if="(recruitment.opp_YN == 1) && (recruitment.reg_YN == 1) && (recruitment.oppid == localStorage.id)">전화번호 : {{recruitment.regphone}}</h5>
+      <a class="item item-icon-left assertive" ng-if="(recruitment.opp_YN == 1) && (recruitment.reg_YN == 1) && (recruitment.oppid == localStorage.id)" href="tel:{{recruitment.regphone}}">
+        <i class="icon ion-android-call"></i>
+        전화번호 : {{recruitment.regphone}}
+      </a>
+
     </div>
 
 
     <div style="margin-top:20px;" ng-if="recruitment.opp_YN == 1">
-      <h4 class="positive" style="text-align: center">팀장</h4>
+      <h4 class="positive" style="text-align: center">팀</h4>
     </div>
-    <div ng-if="recruitment.opp_YN == 1">
-      <img ng-src="{{recruitment.oppt_picture + updateImg}}" style="margin-left:auto; margin-right:auto; max-width:100px; min-width:100px; display:block"> <!--recruitment.oppemblem-->
-      <h5 style="text-align: center">팀이름 : {{recruitment.oppt_name}}</h5>
-      <h5 style="text-align: center" ng-if="recruitment.opp_YN == 1 && recruitment.reg_YN == 1 && (recruitment.regid == localStorage.id)">전화번호 : {{recruitment.oppphone}}</h5>
+
+    <div class="card" ng-if="recruitment.opp_YN == 1">
+      <div class="item item-thumbnail-left">
+        <img ng-src="{{recruitment.oppt_picture + updateImg}}">
+        <div class="row">
+          <span class="col col-75" style="font-size:13px; padding: 0px;">팀이름 : {{recruitment.oppt_name}}</span>
+          <span class="col col-25" style="font-size:13px;padding: 0px;"></span>
+        </div>
+      </div>
+      <!--<div class="item item-body">-->
+        <!--<p>-->
+          <!--내용 : {{recruitment.regcontent}}-->
+        <!--</p>-->
+      <!--</div>-->
+
+      <a class="item item-icon-left assertive" ng-if="recruitment.opp_YN == 1 && recruitment.reg_YN == 1 && (recruitment.regid == localStorage.id)" href="tel:{{recruitment.oppphone}}">
+        <i class="icon ion-android-call"></i>
+        전화번호 : {{recruitment.oppphone}}
+      </a>
+
     </div>
 
   </ion-content>
