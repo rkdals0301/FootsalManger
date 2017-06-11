@@ -1,7 +1,8 @@
-angular.module('app.main.matching.detail.controller', [])
+angular.module('app.main.matching.detail.controller', ['app.team.member.manager'])
 
-  .controller('Matching-DetailController', function($scope, $rootScope, matchingManager, popupUtil, loadingUtil, $timeout){
+  .controller('Matching-DetailController', function($scope, $rootScope, matchingManager, popupUtil, loadingUtil, $timeout, teamMemberManager){
 
+    $scope.team = {t_name : ''};
     $scope.buttonBar = false;
     $scope.registerName = "신청";
     $scope.registerShow = false;
@@ -15,6 +16,9 @@ angular.module('app.main.matching.detail.controller', [])
       $timeout(function () { // 0.2sec later buttonBar show
         $scope.buttonBar = true;
       }, 200, true );
+      if($scope.matching.opp_YN == 0){
+        $scope.getTeamMemberTeamNameList();
+      }
     });
 
     $scope.getMatching = function (){
@@ -139,6 +143,7 @@ angular.module('app.main.matching.detail.controller', [])
           $scope.matching.reg_YN = 1;
       } else if ($scope.matching.regid != $rootScope.localStorage.id){
           $scope.matching.oppid = $rootScope.localStorage.id;
+          $scope.matching.oppt_name = $scope.team.t_name;
           $scope.matching.opp_YN = 1;
           $scope.registerShow = false;
           $scope.cancelShow = false;
@@ -149,15 +154,16 @@ angular.module('app.main.matching.detail.controller', [])
     };
 
     $scope.negativeBtn = function (){
-      $scope.matching.oppteam= null;
+      $scope.matching.oppt_name= null;
       $scope.matching.oppid = null;
       $scope.matching.opp_YN = 0;
       $scope.matching.reg_YN = 0;
       $scope.matching.oppphone = null;
-      $scope.matching.oppemblem = null;
+      $scope.matching.oppt_picture = null;
       $scope.registerShow = false;
       $scope.cancelShow = false;
       $scope.stateShow = false;
+      $scope.getTeamMemberTeamNameList();
 
       $scope.putMatching();
     };
@@ -166,5 +172,28 @@ angular.module('app.main.matching.detail.controller', [])
       popupUtil.showDeletePopup($scope, "matching");
     };
 
+    $scope.getTeamMemberTeamNameList = function () {
+      if($scope.showLoading == true){
+      } else if ($scope.showLoading == false){
+        loadingUtil.showLoading($scope.chkShowLoading);
+      }
+      teamMemberManager.getTeamMemberTeamNameList($rootScope.localStorage.id).then(
+        function(data) {
+          $scope.myTeamNameList = data;
+          $scope.team.t_name = $scope.myTeamNameList[0];
+          if($scope.myTeamNameList == ''){
+            $scope.stateShow = true;
+            $scope.stateName = "팀이 없습니다.";
+            $scope.registerShow = false;
+            $scope.cancelShow = false;
+          }
+          loadingUtil.hideLoading($scope.chkShowLoading);
+          $scope.$broadcast('scroll.refreshComplete');
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
+    };
 
   });

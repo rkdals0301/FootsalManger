@@ -1,4 +1,6 @@
-angular.module('app.main.team.controller', [])
+angular.module('app.main.team.controller', ['app.main.team.create.controller','app.main.team.searcb.controller',
+  'app.main.team.myteam.controller'
+  ,'app.team.manager'])
 
   .config(function($stateProvider){
     $stateProvider
@@ -10,27 +12,10 @@ angular.module('app.main.team.controller', [])
             controller: 'TeamController'
           }
         }
-      });
+      })
+
   })
 
-  .run(function($ionicPlatform, $ionicPopup,$state,$ionicHistory) {
-    // Disable BACK button on home
-    $ionicPlatform.registerBackButtonAction(function(event) {
-      // if (true) { // your check here
-      if($state.current.name=="main.home") {
-        $ionicPopup.confirm({
-          title: 'System warning',
-          template: 'are you sure you want to exit?'
-        }).then(function(res) {
-          if (res) {
-            ionic.Platform.exitApp();
-          }
-        })
-      } else {
-        $ionicHistory.goBack();
-      }
-    }, 100);
-  })
 
   .controller('TeamController', function($scope){
 
@@ -41,4 +26,5 @@ angular.module('app.main.team.controller', [])
     $scope.$on('$ionicView.beforeLeave', function(){
       console.log('team.js beforeLeave');
     });
+
   });

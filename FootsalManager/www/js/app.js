@@ -11,7 +11,8 @@ angular.module('app', ['ionic', 'app.main.controller','ngCordova','app.localstor
   return {url : url};
   }())
 
-  .run(function($ionicPlatform, $cordovaPushV5, $rootScope, $localstorage) {
+  .run(function($ionicPlatform, $cordovaPushV5, $rootScope, $localstorage, $ionicPopup, $state, $ionicHistory, $ionicViewSwitcher) {
+
     $ionicPlatform.ready(function() {
       if(window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -27,10 +28,33 @@ angular.module('app', ['ionic', 'app.main.controller','ngCordova','app.localstor
         StatusBar.styleDefault();
       }
 
+      // Disable BACK button on home
+      $ionicPlatform.registerBackButtonAction(function(event) {
+        // if (true) { // your check here
+        if($state.current.name=="main.home") {
+          $ionicPopup.confirm({
+            title: 'System warning',
+            template: 'are you sure you want to exit?'
+          }).then(function(res) {
+            if (res) {
+              ionic.Platform.exitApp();
+            }
+          })
+        } else {
+          $ionicHistory.goBack();
+        }
+      }, 100);
+
+      $rootScope.goBackState = function(){
+        $ionicViewSwitcher.nextDirection('back');
+        $ionicHistory.goBack();
+      };
+
       var options = {
         android: {
           senderID: "494885548415", //SENDER ID
-          forceShow: "true"
+          forceShow: "true",
+          vibrate : "true"
         },
         browser: {
           pushServiceURL: 'http://push.api.phonegap.com/v1/push'
@@ -67,8 +91,8 @@ angular.module('app', ['ionic', 'app.main.controller','ngCordova','app.localstor
           // handle push messages while app is in background or not started
           console.log("foreground");
         }
-        // data.message,
-        // data.title,
+        // console.log(data.TITLE_EXTRA_KEY);
+        // console.log(data.MSG_EXTRA_KEY);
         // data.count,
         // data.sound,
         // data.image,
@@ -99,8 +123,6 @@ angular.module('app', ['ionic', 'app.main.controller','ngCordova','app.localstor
     });
 
     $state.go('main.home');
-
-
 
 
   });

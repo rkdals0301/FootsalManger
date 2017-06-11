@@ -1,7 +1,8 @@
-angular.module('app.main.recruitment.detail.controller', [])
+angular.module('app.main.recruitment.detail.controller', ['app.team.member.manager'])
 
-  .controller('Recruitment-DetailController', function($scope, recruitmentManager, $rootScope, popupUtil, loadingUtil, $timeout){
+  .controller('Recruitment-DetailController', function($scope, recruitmentManager, $rootScope, popupUtil, loadingUtil, $timeout, teamMemberManager){
 
+    $scope.team = {t_name : ''};
     $scope.buttonBar = false;
     $scope.registerName = "신청";
     $scope.registerShow = false;
@@ -15,6 +16,9 @@ angular.module('app.main.recruitment.detail.controller', [])
       $timeout(function () { // 0.2sec later buttonBar show
         $scope.buttonBar = true;
       }, 200, true );
+      if($scope.recruitment.opp_YN == 0){
+        $scope.getTeamMemberTeamNameList();
+      }
     });
 
     $scope.getRecruitment = function (){
@@ -152,6 +156,7 @@ angular.module('app.main.recruitment.detail.controller', [])
       }
       else if ($scope.recruitment.regid != $rootScope.localStorage.id){
         $scope.recruitment.oppid = $rootScope.localStorage.id;
+        $scope.recruitment.oppt_name = $scope.team.t_name;
         $scope.recruitment.opp_YN = 1;
       }
       $scope.putRecruitment();
@@ -159,17 +164,46 @@ angular.module('app.main.recruitment.detail.controller', [])
 
     $scope.negativeBtn = function (){
 
-      $scope.recruitment.oppteam= null;
       $scope.recruitment.oppid = null;
-      $scope.recruitment.opp_YN = 0;
       $scope.recruitment.oppphone = null;
-      $scope.recruitment.oppemblem = null;
+      $scope.recruitment.opp_YN = 0;
+      $scope.recruitment.oppt_name = null;
+      $scope.recruitment.oppt_picture = null;
+      $scope.registerShow = false;
+      $scope.cancelShow = false;
+      $scope.stateShow = false;
+      $scope.getTeamMemberTeamNameList();
 
       $scope.putRecruitment();
     };
 
     $scope.showDeletePopup = function () {
       popupUtil.showDeletePopup($scope, "recruitment");
+    };
+
+
+    $scope.getTeamMemberTeamNameList = function () {
+      if($scope.showLoading == true){
+      } else if ($scope.showLoading == false){
+        loadingUtil.showLoading($scope.chkShowLoading);
+      }
+      teamMemberManager.getTeamMemberTeamNameList($rootScope.localStorage.id).then(
+        function(data) {
+          $scope.myTeamNameList = data;
+          $scope.team.t_name = $scope.myTeamNameList[0];
+          if($scope.myTeamNameList == ''){
+            $scope.stateShow = true;
+            $scope.stateName = "팀이 없습니다.";
+            $scope.registerShow = false;
+            $scope.cancelShow = false;
+          }
+          loadingUtil.hideLoading($scope.chkShowLoading);
+          $scope.$broadcast('scroll.refreshComplete');
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
     };
 
   });

@@ -1,0 +1,35 @@
+<ion-view view-title="TeamMyteam">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="goBackState()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+
+    <label class="item item-input item-select">
+      <span class="input-label">TeamName</span>
+
+      <select ng-model="team.t_name" ng-change="changeTeam()">
+        <option ng-repeat="myTeamName in myTeamNameList" value="{{myTeamName}}">{{myTeamName}}</option>
+      </select>
+    </label>
+
+    <div class="padding">
+      <img ng-src="{{myTeam.t_picture}}" class="circular--square">
+      <div class="padding" style="text-align:center;">{{myTeam.t_name}}</div>
+    </div>
+
+
+    <ion-list>
+      <div class="item item-divider">팀원</div>
+      <ion-item collection-repeat="myTeamMember in myTeamMemberList" class="item-avatar" ng-show="myTeamMember.duty != 0">
+          <img ng-src="{{myTeamMember.p_picture}}">
+          <h2>{{myTeamMember.nickname}}</h2><!--style="line-height: 300%;" -->
+          <span class="badge badge-positive">{{myTeamMember.position}}</span>
+          <span ng-if="myTeamMember.duty == 1" class="badge badge-royal" style="right:80px;">팀장</span>
+          <span ng-if="myTeamMember.duty == 2" class="badge badge-royal" style="right:80px;">팀원</span>
+      </ion-item>
+    </ion-list>
+
+
+  </ion-content>
+
+</ion-view>

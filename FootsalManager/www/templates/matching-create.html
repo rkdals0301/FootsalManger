@@ -26,12 +26,19 @@
         <span class="input-label">regTeamNum</span>
         <input type="tel" placeholder="Num" ng-model="matching.regteamnum">
       </label>
+      <label class="item item-input item-select">
+        <span class="input-label">TeamName</span>
+
+        <select ng-model="matching.regt_name">
+          <option ng-repeat="myTeamName in myTeamNameList" value="{{myTeamName}}">{{myTeamName}}</option>
+        </select>
+      </label>
     </div>
   </ion-content>
 
   <ion-footer-bar class="bar-positive footer-bar">
     <div class="button-bar">
-      <button class="button button-clear" ng-click="SubmitMatching()" ng-disabled="localStorage.id == 'null'">Submit</button>
+      <button class="button button-clear" ng-click="SubmitMatching()" ng-disabled="localStorage.id == 'null' || myTeamNameList == ''">Submit</button>
     </div>
   </ion-footer-bar>
 

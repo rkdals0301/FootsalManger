@@ -41,6 +41,14 @@
 
     </div>
 
+    <label class="item item-input item-select" ng-show="recruitment.opp_YN == 0 && recruitment.regid != localStorage.id ">
+      <span class="input-label">TeamName</span>
+
+      <select ng-model="team.t_name">
+        <option ng-repeat="myTeamName in myTeamNameList" value="{{myTeamName}}">{{myTeamName}}</option>
+      </select>
+    </label>
+
 
     <div style="margin-top:20px;" ng-if="recruitment.opp_YN == 1">
       <h4 class="positive" style="text-align: center">팀</h4>

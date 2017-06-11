@@ -1,0 +1,24 @@
+<ion-view view-title="TeamCreate">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="goBackState()"></button>
+  </ion-nav-buttons>
+  <ion-content>
+
+
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">t_name</span>
+        <input type="text" placeholder="t_name" ng-model="team.t_name">
+      </label>
+
+    </div>
+
+  </ion-content>
+
+  <ion-footer-bar class="bar-positive footer-bar">
+    <div class="button-bar">
+      <button class="button button-clear" ng-click="SubmitTeam()" ng-disabled="localStorage.id == 'null'">Submit</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-view>

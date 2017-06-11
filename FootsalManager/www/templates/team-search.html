@@ -1,0 +1,42 @@
+<ion-view view-title="TeamSearch">
+  <ion-nav-buttons side="left">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="goBackState()"></button>
+  </ion-nav-buttons>
+
+  <ion-header-bar class="bar bar-subheader bar-positive item-input-inset">
+
+    <label class="item-input-wrapper">
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" placeholder="Search" ng-model="team.t_name">
+    </label>
+    <button class="button button-clear" ng-click="getTeamList()">
+      Search
+    </button>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <ion-list>
+
+      <div class="item item-divider">지역선택</div>
+      <span class="item item-icon-right" ng-click="showCity('fadeInDownBig', 0)">
+        지역 선택 : {{location.city}}
+        <i class="icon ion-location"></i>
+      </span>
+      <span class="item item-icon-right" ng-click="showCity('fadeInDownBig', 1)" ng-show="location.city != '전체'">
+        구 선택 : {{location.gu}}
+        <i class="icon ion-location"></i>
+      </span>
+
+      <div class="item item-divider">팀</div>
+      <ion-item collection-repeat="team in teamList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', matchList.idx)" ng-switch on= "matchList.opp_YN">
+        <img ng-src="{{team.t_picture + updateImg}}">
+        <h3>팀이름 : {{team.t_name}}</h3>
+        <h4>지역 : {{team.t_city}} {{team.t_gu}}</h4>
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

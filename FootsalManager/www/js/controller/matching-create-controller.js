@@ -1,7 +1,12 @@
-angular.module('app.main.matching.create.controller', [])
+angular.module('app.main.matching.create.controller', ['app.team.member.manager'])
 
-  .controller('Matching-CreateController', function($scope, $rootScope, matchingManager, toastUtil, loadingUtil){
-    $scope.matching = {regid : $rootScope.localStorage.id, reghopeTime : '', regcontent : '', regcity : '', reggu : '', regteamnum : ''};
+  .controller('Matching-CreateController', function($scope, $rootScope, matchingManager, toastUtil, loadingUtil, teamMemberManager){
+    $scope.matching = {regid : $rootScope.localStorage.id, regt_name : '', reghopeTime : '', regcontent : '', regcity : '', reggu : '', regteamnum : ''};
+
+
+    $scope.$on('modal.shown', function(){
+      $scope.getTeamMemberTeamNameList();
+    });
 
     $scope.SubmitMatching = function () {
       if($scope.matching.reghopeTime == ''){
@@ -30,5 +35,21 @@ angular.module('app.main.matching.create.controller', [])
         function (error) {
           console.log(error);
         });
+    };
+
+
+    $scope.getTeamMemberTeamNameList = function () {
+      loadingUtil.showLoading();
+      teamMemberManager.getTeamMemberTeamNameList($rootScope.localStorage.id).then(
+        function(data) {
+          $scope.myTeamNameList = data;
+          $scope.matching.regt_name = $scope.myTeamNameList[0];
+          loadingUtil.hideLoading();
+          $scope.$broadcast('scroll.refreshComplete');
+        },
+        function(error) {
+          console.log(error);
+        }
+      );
     };
   });

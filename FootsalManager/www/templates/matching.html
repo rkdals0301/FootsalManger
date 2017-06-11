@@ -20,7 +20,7 @@
         <i class="icon ion-location"></i>
       </span>
 
-      <div class="item item-divider">매칭선택</div>
+      <div class="item item-divider">매칭</div>
       <ion-item collection-repeat="matchList in matchingList" class="item-thumbnail-left" ng-click="showDetail('slideInRight', matchList.idx)" ng-switch on= "matchList.opp_YN">
         <img ng-src="{{matchList.regt_picture + updateImg}}">
         <h3>팀이름 : {{matchList.regt_name}}</h3>

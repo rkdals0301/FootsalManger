@@ -47,6 +47,14 @@
 
       </div>
 
+      <label class="item item-input item-select" ng-show="matching.opp_YN == 0 && matching.regid != localStorage.id ">
+        <span class="input-label">TeamName</span>
+
+        <select ng-model="team.t_name">
+          <option ng-repeat="myTeamName in myTeamNameList" value="{{myTeamName}}">{{myTeamName}}</option>
+        </select>
+      </label>
+
       <!--<div class="list card">-->
 
         <!--<div class="item item-thumbnail-left">-->

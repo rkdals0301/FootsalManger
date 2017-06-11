@@ -22,9 +22,15 @@
         <span class="input-label">Phone</span>
         <input type="tel" placeholder="phone" ng-model="profile.phone">
       </label>
-      <label class="item item-input item-stacked-label">
+      <label class="item item-input item-select">
         <span class="input-label">Foot</span>
-        <input type="text" placeholder="foot" ng-model="profile.foot">
+
+        <select ng-model="profile.foot">
+          <option value=""></option>
+          <option value="왼발">왼발</option>
+          <option value="오른발">오른발</option>
+          <option value="양발">양발</option>
+        </select>
       </label>
       <label class="item item-input item-stacked-label">
         <span class="input-label">Position</span>
@@ -45,14 +51,6 @@
       <label class="item item-input item-stacked-label">
         <span class="input-label">Favorite_Stadium</span>
         <input type="text" placeholder="favorite_stadium" ng-model="profile.favorite_stadium">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Main_Team</span>
-        <input type="text" placeholder="main_team" ng-model="profile.main_team">
-      </label>
-      <label class="item item-input item-stacked-label">
-        <span class="input-label">Sub_Team</span>
-        <input type="text" placeholder="sub_team" ng-model="profile.sub_team">
       </label>
     </div>
   </ion-content>
