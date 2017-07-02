@@ -58,6 +58,10 @@ a {text-decoration: none !important;}
   border-color:#387ef5 !important;
 }
 
+.popup-buttons .button {
+  border-color : #009688 !important;
+}
+
 .bar{
   border:0px !important;
 background-image: none !important;

@@ -72,14 +72,13 @@ angular.module('app.main.recruitment.controller', ['app.location.controller','ap
     };
 
     $scope.showDetail = function(animation, idx){
-
       $scope.getRecruitment  (animation, idx);
     };
 
     $scope.showCreate = function(animation){
       modalUtil.init(animation,'recruitment-create.html', $scope).then(function(modal) {
         modal.show();
-        $scope.modalA = modal;
+        $scope.modalB = modal;
       });
     };
 

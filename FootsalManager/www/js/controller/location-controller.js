@@ -1,7 +1,7 @@
 angular.module('app.location.controller', ['app.location.manager'])
 
   .controller('LocationController', function($scope, locationManager, loadingUtil){
-    $scope.choiceLocation = {city : null, gu : null};
+    $scope.choiceLocation = {city : '전체', gu : '전체'};
 
     $scope.$on('modal.shown', function(){
       // 0 : city, 1 : gu

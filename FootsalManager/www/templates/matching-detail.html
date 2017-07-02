@@ -25,13 +25,14 @@
         <div class="item item-thumbnail-left">
           <img ng-src="{{matching.regt_picture + updateImg}}">
           <div class="row">
-            <span class="col col-50" style="font-size:13px; padding: 0px;">팀이름 : {{matching.regt_name}}</span>
-            <span class="col col-50" style="font-size:13px; padding: 0px;">경기날짜 : {{matching.reghopeTime}}
+            <span class="col col-40" style="font-size:13px; padding: 0px;">팀이름 : {{matching.regt_name}}</span>
+            <span class="col col-60" style="font-size:13px; padding: 0px;">경기날짜 : {{matching.reghopeTime}}
               </span>
           </div>
           <div class="row">
-            <span class="col col-50" style="font-size:13px; padding: 0px;">인원: {{matching.regteamnum}}명</span>
-            <span class="col col-50" style="font-size:13px; padding: 0px;">매칭지역 : {{matching.regcity}} {{matching.reggu}}</span>
+            <span class="col col-40" style="font-size:13px; padding: 0px;">인원: {{matching.regteamnum}}명</span>
+            <span class="col col-60" style="font-size:13px; padding: 0px;" ng-if="(matching.regcity == '전체')">매칭지역 : {{matching.regcity}}</span>
+            <span class="col col-60" style="font-size:13px; padding: 0px;" ng-if="(matching.regcity != '전체')">매칭지역 : {{matching.regcity}} {{matching.reggu}}</span>
           </div>
         </div>
         <div class="item item-body">

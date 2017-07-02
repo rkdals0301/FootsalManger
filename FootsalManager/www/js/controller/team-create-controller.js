@@ -15,11 +15,15 @@ angular.module('app.main.team.create.controller', [])
 
 
 
-  .controller('TeamCreateController', function($scope, teamManager, toastUtil, $state, $rootScope, loadingUtil){
+  .controller('TeamCreateController', function($scope, teamManager, toastUtil, $state, $rootScope, loadingUtil, modalUtil){
 
     $scope.team = {t_name : '',  t_city : '', t_gu : ''};
     $scope.teamMember = {t_name : '', id : $rootScope.localStorage.id, duty : 1 };
     $scope.teamWrapper = {team : null, teamMember : null};
+    $scope.location = {city : '전체', gu : '전체'};
+    $scope.locatonChk = 0;
+
+
 
     $scope.$on('$ionicView.beforeEnter', function(){ //initialize
       console.log('teamCreate.js beforeEnter');
@@ -57,9 +61,12 @@ angular.module('app.main.team.create.controller', [])
     };
 
     $scope.setTeam = function () {
+      $scope.team.t_city = $scope.location.city;
+      $scope.team.t_gu = $scope.location.gu;
       $scope.teamMember.t_name = $scope.team.t_name;
       $scope.teamWrapper.team = $scope.team;
       $scope.teamWrapper.teamMember = $scope.teamMember;
+
       teamManager.setTeam($scope.teamWrapper).then(
         function (data) {
           toastUtil.showShortBottomToast('팀생성 되었습니다.');
@@ -70,5 +77,19 @@ angular.module('app.main.team.create.controller', [])
           console.log(error);
         });
     };
+
+    $scope.showCity = function(animation, chkClick){
+      $scope.locatonChk = chkClick;
+      modalUtil.init(animation,'location.html', $scope).then(function(modal) {
+        modal.show();
+        $scope.modalA = modal;
+      });
+    };
+
+    $scope.$watch("team.t_name", function(newValue, oldValue){
+      if (newValue.length > 5){
+        $scope.team.t_name = oldValue;
+      }
+    });
 
   });

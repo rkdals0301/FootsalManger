@@ -99,7 +99,7 @@
     $scope.showCreate = function(animation){
       modalUtil.init(animation,'matching-create.html', $scope).then(function(modal) {
         modal.show();
-        $scope.modalA = modal;
+        $scope.modalB = modal;
       });
     };
 

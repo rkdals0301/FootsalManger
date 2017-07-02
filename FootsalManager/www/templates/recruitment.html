@@ -26,7 +26,8 @@
         <h3>닉네임 : {{recruitment.regnickname }}</h3>
         <h4>나이 : {{recruitment.regage}}</h4>
         <h4>포지션 : {{recruitment.regposition}}</h4>
-        <h4>위치 : {{recruitment.regcity}} {{recruitment.reggu}}</h4>
+        <h4 ng-if="(recruitment.regcity == '전체')">위치 : {{recruitment.regcity}}</h4>
+        <h4 ng-if="(recruitment.regcity != '전체')">위치 : {{recruitment.regcity}} {{recruitment.reggu}}</h4>
         <div ng-switch-when="1">
             <span class="badge badge-stable" ng-if="recruitment.reg_YN == 1">용병모집 완료</span>
             <span class="badge badge-positive" ng-if="recruitment.reg_YN == 0">용병모집 중</span>

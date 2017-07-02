@@ -1,5 +1,5 @@
-angular.module('app.main.reservation.controller', ['app.location.controller'
-  ,'app.reservation.manager'])
+angular.module('app.main.reservation.controller', ['app.location.controller','app.main.reservation.detail.controller'
+  ,'app.reservation.manager', 'app.reservationAdmin.manager'])
 
   .config(function($stateProvider){
     $stateProvider
@@ -14,7 +14,7 @@ angular.module('app.main.reservation.controller', ['app.location.controller'
       });
   })
 
-  .controller('ReservationController', function($scope, reservationManager, modalUtil, popupUtil, loadingUtil){
+  .controller('ReservationController', function($scope, reservationManager, modalUtil, popupUtil, loadingUtil, $timeout, reservationAdminManager){
 
     $scope.locatonChk = 0;
     $scope.location = {city : '전체', gu : '전체'};
@@ -47,8 +47,41 @@ angular.module('app.main.reservation.controller', ['app.location.controller'
       );
     };
 
+    $scope.getReservation = function (animation,idx) {
+      reservationManager.getReservation(idx).then(
+        function (data) {
+          $scope.reservation = data;
+          $scope.updateImg = '?_ts=' + new Date().getTime();
+          $timeout(function () {
+            modalUtil.init(animation,'reservation-detail.html', $scope).then(function(modal) {
+              modal.show();
+              $scope.modalA = modal;
+            });
+          }, 200, true );
+          loadingUtil.hideLoading();
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
+    };
+
+    $scope.getReservationAdminList = function (animation, idx) {
+      loadingUtil.showLoading();
+      reservationAdminManager.getReservationAdminList(idx).then(
+        function (data) {
+          $scope.reservationAdminList = data;
+          $scope.getReservation(animation, idx);
+        },
+        function (error) {
+          console.log(error);
+        }
+      );
+    };
+
+
     $scope.showDetail = function(animation, idx){
-      $scope.idx = idx;
+      $scope.getReservationAdminList(animation, idx);
     };
 
     $scope.showCity = function(animation, chkClick){

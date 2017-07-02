@@ -1,4 +1,4 @@
-angular.module('app.main.team.controller', ['app.main.team.create.controller','app.main.team.searcb.controller',
+angular.module('app.main.team.controller', ['app.main.team.create.controller','app.main.team.search.controller',
   'app.main.team.myteam.controller'
   ,'app.team.manager'])
 

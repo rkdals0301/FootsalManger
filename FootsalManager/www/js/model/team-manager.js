@@ -53,6 +53,22 @@ angular.module('app.team.manager', ['app.http.connector'])
       return defer.promise;
     };
 
+    this.setTeamPicture = function(picture) {
+      var defer = $q.defer();
+      var url = ApiEndpoint.url + '/teams/picture';
+
+      httpConnector.postImage(url, picture).then(
+        function(data) {
+          defer.resolve(data.data);
+        },
+        function(error) {
+          console.log(error);
+          defer.reject(data.data);
+        }
+      );
+      return defer.promise;
+    };
+
     this.putTeam = function(reservation) {
       var defer = $q.defer();
       var url = ApiEndpoint.url + '/teams';

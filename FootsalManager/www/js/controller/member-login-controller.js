@@ -68,5 +68,18 @@ angular.module('app.main.login.controller', [])
           console.log(error);
         });
     };
+
+      $scope.$watch("member.id", function(newValue, oldValue){
+        if (newValue.length > 12){
+          $scope.member.id = oldValue;
+        }
+      });
+
+      $scope.$watch("member.passwrod", function(newValue, oldValue){
+        if (newValue.length > 12){
+          $scope.member.passwrod = oldValue;
+        }
+      });
+
   });
 

@@ -1,11 +1,12 @@
-<ion-view view-title="Profile">
-  <ion-nav-buttons side="right">
-    <button class="button button-icon icon ion-edit" ng-click="showUpdate('slideInRight')"></button>
-  </ion-nav-buttons>
+<ion-modal-view view-title="Profile" ng-controller="ProfileShowController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalB.remove()"></button>
+    <h1 class="title">Profile-Show</h1>
+  </ion-header-bar>
   <ion-content class="has-header" style="padding-top:0px;">
 
     <div style="height:120px; background-color: #387ef5;">
-      <img class="circular--square" ng-src="{{profile.p_picture + updateImg}}" ng-click="choosePhoto()" style="position:relative;top:50px;">
+      <img class="circular--square" ng-src="{{profile.p_picture + updateImg}}" ng-click="ShowImageDetail()" style="position:relative;top:50px;">
     </div>
     <div style="height:100px;">
       <h4 style="line-height:100px; text-align:center;">{{profile.p_name}}</h4>
@@ -71,4 +72,4 @@
 
     </div>
   </ion-content>
-</ion-view>
+</ion-modal-view>

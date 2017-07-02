@@ -26,7 +26,8 @@
         <h3>팀이름 : {{matchList.regt_name}}</h3>
         <h4>매칭 시간 : {{matchList.reghopeTime}}</h4>
         <h4>매칭 인원 : {{matchList.regteamnum}}명</h4>
-        <h4>매칭 지역 : {{matchList.regcity}} {{matchList.reggu}}</h4>
+        <h4 ng-if="(matchList.regcity == '전체')">매칭 지역 : {{matchList.regcity}}</h4>
+        <h4 ng-if="(matchList.regcity != '전체')">매칭 지역 : {{matchList.regcity}} {{matchList.reggu}}</h4>
         <div ng-switch-when="1">
           <span class="badge badge-stable" ng-if="matchList.reg_YN == 1">매칭 완료</span>
           <span class="badge badge-positive" ng-if="matchList.reg_YN == 0">매칭 중</span>

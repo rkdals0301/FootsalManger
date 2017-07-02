@@ -12,20 +12,21 @@
       <div class="item item-thumbnail-left">
         <img ng-src="{{recruitment.regp_picture + updateImg}}">
         <div class="row">
-          <span class="col col-75" style="font-size:13px; padding: 0px;">닉네임 : {{recruitment.regnickname}}</span>
-          <span class="col col-25" style="font-size:13px;padding: 0px;">나이 : {{recruitment.regage}}세</span>
+          <span class="col col-60" style="font-size:13px; padding: 0px;">닉네임 : {{recruitment.regnickname}}</span>
+          <span class="col col-40" style="font-size:13px;padding: 0px;">나이 : {{recruitment.regage}}세</span>
         </div>
         <div class="row">
-          <span class="col col-75" style="font-size:13px;padding: 0px;">키 : {{recruitment.regheight}}cm</span>
-          <span class="col col-25" style="font-size:13px;padding: 0px;">포지션 : {{recruitment.regposition}}</span>
+          <span class="col col-60" style="font-size:13px;padding: 0px;">키 : {{recruitment.regheight}}cm</span>
+          <span class="col col-40" style="font-size:13px;padding: 0px;">포지션 : {{recruitment.regposition}}</span>
         </div>
         <div class="row">
-          <span class="col col-75" style="font-size:13px;padding: 0px;">몸무게 : {{recruitment.regweight}}Kg</span>
-          <span class="col col-25" style="font-size:13px;padding: 0px;">주발 : {{recruitment.regfoot}}</span>
+          <span class="col col-60" style="font-size:13px;padding: 0px;">몸무게 : {{recruitment.regweight}}Kg</span>
+          <span class="col col-40" style="font-size:13px;padding: 0px;">주발 : {{recruitment.regfoot}}</span>
         </div>
         <div class="row">
-          <span class="col col-75" style="font-size:13px;padding: 0px;">원하는 곳 : {{recruitment.regcity}} {{recruitment.reggu}}</span>
-          <span class="col col-25" style="font-size:13px;padding: 0px;"></span>
+          <span class="col col-60" style="font-size:13px;padding: 0px;" ng-if="(recruitment.regcity == '전체')">원하는 곳 : {{recruitment.regcity}}</span>
+          <span class="col col-60" style="font-size:13px;padding: 0px;" ng-if="(recruitment.regcity != '전체')">원하는 곳 : {{recruitment.regcity}} {{recruitment.reggu}}</span>
+          <span class="col col-40" style="font-size:13px;padding: 0px;"></span>
         </div>
       </div>
       <div class="item item-body">

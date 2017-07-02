@@ -1,0 +1,62 @@
+<ion-modal-view ng-controller="Reservation-DetailController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalA.remove()"></button>
+    <h1 class="title">Reservation-Detail</h1>
+  </ion-header-bar>
+
+  <ion-content class="has-header">
+    <div class="row">
+      <div class="col col-50" >
+        <img ng-src="{{reservation.s_picture + updateImg}}" style="max-width:150px; height:260px;">
+      </div>
+      <div class="col col-50">
+        <h4>구장 소개</h4>
+        <p style="font-size:10px;">{{reservation.content}}</p>
+        <h4>상세 정보</h4>
+        <ul style="font-size:10px;">
+          <li>가격 : {{reservation.price}}
+          <li>주소 : {{reservation.city}} {{reservation.gu}} {{reservation.address}}</li>
+          <li style="font-size:13px; font-weight:bold;"><a class="assertive" href="tel:{{reservation.phone}}">전화번호 : {{reservation.phone}}</a></li>
+          <li style="font-size:13px; font-weight:bold;"><a class="assertive" href="tel:{{reservation.cellphone}}">휴대폰번호 : {{reservation.cellphone}}</a></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <ion-list>
+
+      <div class="item item-divider">
+        <div class="row">
+          <div class="col col-33"  style="text-align: center">
+            경기 시간
+          </div>
+          <div class="col col-33"  style="text-align: center">
+            예약 현황
+          </div>
+          <div class="col col-33"  style="text-align: center">
+            가격
+          </div>
+        </div>
+      </div>
+      <ion-item collection-repeat="reservationAdmin in reservationAdminList">
+        <div class="row">
+
+          <div class="col col-33" style="text-align: center">
+            {{reservationAdmin.startTime}}:00 ~ {{reservationAdmin.finishTime}}:00
+          </div>
+          <div class="col col-33"  style="text-align: center">
+            <span ng-if="reservationAdmin.possible == 0">예약 가능</span>
+            <span class="assertive" ng-if="reservationAdmin.possible == 1">예약 완료</span>
+          </div>
+          <div class="col col-33"  style="text-align: center">
+            {{reservation.price}}원
+          </div>
+        </div>
+      </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+</ion-modal-view>
+
+.

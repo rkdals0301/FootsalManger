@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1e139199-bb69-4a45-9ad4-747b54533223" name="Default" comment="" />
+    <list default="true" id="1e139199-bb69-4a45-9ad4-747b54533223" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/FootsalManager/www/js/model/dto/location.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/FootsalManager/www/js/model/dto/matching.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/FootsalManager/www/js/model/dto/member.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/FootsalManager/www/js/model/dto/recruitment.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/.idea/workspace.xml" afterPath="$PROJECT_DIR$/FootsalManager/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/css/style.css" afterPath="$PROJECT_DIR$/FootsalManager/www/css/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/index.html" afterPath="$PROJECT_DIR$/FootsalManager/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/community-create-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/community-create-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/location-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/location-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/matching-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/matching-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/matching-create-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/matching-create-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/member-login-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/member-login-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/member-register-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/member-register-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/profile-update-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/profile-update-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/recruitment-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/recruitment-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/recruitment-create-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/recruitment-create-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/team-create-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/team-create-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/controller/team-search-controller.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/controller/team-search-controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/js/util/popup-util.js" afterPath="$PROJECT_DIR$/FootsalManager/www/js/util/popup-util.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/matching-create.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/matching-create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/matching-detail.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/matching-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/matching-mymatching.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/matching-mymatching.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/matching.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/matching.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/profile-update.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/profile-update.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/profile.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/profile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/recruitment-create.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/recruitment-create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/recruitment-detail.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/recruitment-detail.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/recruitment.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/recruitment.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/team-create.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/team-create.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/FootsalManager/www/templates/team-search.html" afterPath="$PROJECT_DIR$/FootsalManager/www/templates/team-search.html" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,8 +50,8 @@
       <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FootsalManager/www/js/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="266">
+              <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -52,8 +84,7 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
+    <option name="width" value="1932" />
     <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
@@ -83,73 +114,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="FootsalManager" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="www" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/AppData/Roaming/npm/node_modules/jscs" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/FootsalManager" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
     <property name="nodejs_interpreter_path" value="C:/Program Files/nodejs/node" />
     <property name="node.js.path.for.package.jscs" value="project" />
     <property name="node.js.selected.package.jscs" value="C:\Users\rkdal\AppData\Roaming\npm\node_modules\jscs" />
+    <property name="settings.editor.selected.configurable" value="settings.javascript.linters.jscs" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -190,17 +168,18 @@
       <updated>1496189264292</updated>
       <workItem from="1496189266845" duration="171000" />
       <workItem from="1496189518548" duration="611000" />
+      <workItem from="1497352318267" duration="16000" />
+      <workItem from="1497352348614" duration="173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="782000" />
+    <option name="totallyTimeSpent" value="971000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="-8" y="0" width="1932" height="1056" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24920969" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24920802" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -240,6 +219,38 @@
     <entry file="file://$PROJECT_DIR$/FootsalManager/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
+          <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FootsalManager/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FootsalManager/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="51" lean-forward="false" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FootsalManager/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FootsalManager/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
           <caret line="14" column="51" lean-forward="true" selection-start-line="14" selection-start-column="51" selection-end-line="14" selection-end-column="51" />
           <folding />
         </state>
@@ -255,8 +266,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/FootsalManager/www/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="266">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
           <folding />
         </state>
       </provider>

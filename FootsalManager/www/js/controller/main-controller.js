@@ -36,9 +36,6 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
         function(data) {
           $scope.profile = data;
           $scope.updateImg = '?_ts=' + new Date().getTime();
-
-            // $scope.chkgetProfile = true;
-          // }
           loadingUtil.hideLoading();
         },
         function(error) {
@@ -53,11 +50,7 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
       function (isOpen) {
         if (isOpen){
           if($rootScope.localStorage.id != 'null'){
-            // if($scope.chkgetProfile == false){
                $scope.getProfile();
-            // } else {
-            //    $scope.updateImg = '?_ts=' + new Date().getTime();
-            // }
           }
           console.log("open");
         } else{
@@ -78,7 +71,6 @@ angular.module('app.main.controller', ['app.main.home.controller','app.main.matc
       loadingUtil.showLoading();
       memberManager.UpdateTokenMember($scope.member).then(
         function (data) {
-          // $scope.chkgetProfile = false;
           $localstorage.set("id", null);
           $scope.setStorage();
           $ionicSideMenuDelegate.toggleLeft(false);

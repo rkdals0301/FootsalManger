@@ -2,33 +2,52 @@
   <ion-nav-buttons side="left">
     <button class="button button-icon icon ion-arrow-left-c" ng-click="goBackState()"></button>
   </ion-nav-buttons>
+  <!--<ion-nav-buttons side="right">-->
+    <!--<button class="button button-icon icon ion-edit" ng-click="showUpdate('slideInRight')"></button>-->
+  <!--</ion-nav-buttons>-->
   <ion-content>
 
     <label class="item item-input item-select">
       <span class="input-label">TeamName</span>
 
-      <select ng-model="team.t_name" ng-change="changeTeam()">
+      <select ng-model="teamMember.t_name" ng-change="changeTeam()">
         <option ng-repeat="myTeamName in myTeamNameList" value="{{myTeamName}}">{{myTeamName}}</option>
       </select>
     </label>
 
-    <div class="padding">
-      <img ng-src="{{myTeam.t_picture}}" class="circular--square">
+    <div class="padding" ng-show="(localStorage.id != 'null') && (myTeam.t_name != null)">
+      <img ng-src="{{myTeam.t_picture + updateImg}}" class="circular--square" ng-click="choosePhoto()" >
       <div class="padding" style="text-align:center;">{{myTeam.t_name}}</div>
     </div>
 
 
     <ion-list>
+
+      <div class="item item-divider">신청자</div>
+      <ion-item  class="item-avatar item-button-right" ng-repeat="myTeamMember in myTeamMemberList" ng-show="myTeamMember.duty == 0" ng-click="showProfile('slideInRight', myTeamMember.id)">
+        <img ng-src="{{myTeamMember.p_picture + updateImg}}">
+        <h2>{{myTeamMember.nickname}}</h2><!--style="line-height: 300%;" -->
+        <span ng-if="myTeamMember.duty == 0" class="badge badge-dark" style="right:120px;">신청자</span>
+          <div class="buttons" ng-show="myDuty == 1">
+            <button class="button button-positive" ng-click="positiveBtn(myTeamMember.idx)">
+              <i class="icon icon ion-checkmark"></i>
+            </button>
+            <button class="button button-assertive" style="border-color:red !important;" ng-click="negativeBtn(myTeamMember.idx)">
+              <i class="icon icon ion-close"></i>
+            </button>
+          </div>
+      </ion-item>
+
+
       <div class="item item-divider">팀원</div>
-      <ion-item collection-repeat="myTeamMember in myTeamMemberList" class="item-avatar" ng-show="myTeamMember.duty != 0">
-          <img ng-src="{{myTeamMember.p_picture}}">
+      <ion-item collection-repeat="myTeamMember in myTeamMemberList" class="item-avatar" ng-show="myTeamMember.duty != 0" ng-click="showProfile('slideInRight', myTeamMember.id)">
+          <img ng-src="{{myTeamMember.p_picture + updateImg}}">
           <h2>{{myTeamMember.nickname}}</h2><!--style="line-height: 300%;" -->
-          <span class="badge badge-positive">{{myTeamMember.position}}</span>
+          <span class="badge" ng-class="{FW : 'badge-assertive', MF : 'badge-balanced', DF : 'badge-positive', GK : 'badge-energized'}[myTeamMember.position]" ng-click="showPositionPopup(myTeamMember.idx, myTeamMember.id)">{{myTeamMember.position}}</span>
           <span ng-if="myTeamMember.duty == 1" class="badge badge-royal" style="right:80px;">팀장</span>
-          <span ng-if="myTeamMember.duty == 2" class="badge badge-royal" style="right:80px;">팀원</span>
+          <span ng-if="myTeamMember.duty == 2" ng-click="showDutyPopup(myTeamMember.idx)" class="badge badge-dark" style="right:80px;">팀원</span>
       </ion-item>
     </ion-list>
-
 
   </ion-content>
 

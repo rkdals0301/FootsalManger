@@ -81,5 +81,32 @@ angular.module('app.main.register.controller', [])
           });
     };
 
+    $scope.$watch("member.id", function(newValue, oldValue){
+      if (newValue.length > 12){
+        $scope.member.id = oldValue;
+      }
+    });
+
+    $scope.$watch("member.passwrod", function(newValue, oldValue){
+      if (newValue.length > 12){
+        $scope.member.passwrod = oldValue;
+      }
+    });
+    $scope.$watch("member_confirm.password_confirm", function(newValue, oldValue){
+      if (newValue.length > 12){
+        $scope.member_confirm.password_confirm = oldValue;
+      }
+    });
+    $scope.$watch("profile.p_name", function(newValue, oldValue){
+      if (newValue.length > 5){
+        $scope.profile.p_name = oldValue;
+      }
+    });
+    $scope.$watch("profile.phone", function(newValue, oldValue){
+      if (newValue.length > 11){
+        $scope.profile.phone = oldValue;
+      }
+    });
+
   });
 

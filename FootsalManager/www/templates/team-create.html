@@ -10,6 +10,12 @@
         <span class="input-label">t_name</span>
         <input type="text" placeholder="t_name" ng-model="team.t_name">
       </label>
+      <span class="item" ng-click="showCity('fadeInDownBig',0)">
+        regcity : {{location.city}}
+      </span>
+      <span class="item" ng-click="showCity('fadeInDownBig',1)" ng-show="location.city != '전체'">
+        reggu : {{location.gu}}
+      </span>
 
     </div>
 

@@ -1,0 +1,44 @@
+<ion-modal-view ng-controller="Team-DetailController">
+  <ion-header-bar align-title="center" class="bar-positive">
+    <button class="button button-icon icon ion-arrow-left-c" ng-click="modalB.remove()"></button>
+    <h1 class="title">Team-Detail</h1>
+  </ion-header-bar>
+  <ion-content class="has-header">
+
+    <div class="padding">
+      <img ng-src="{{Team.t_picture + updateImg}}" class="circular--square" ng-click="ShowImageDetail()">
+      <div class="padding" style="text-align:center;">{{Team.t_name}}</div>
+    </div>
+
+
+    <ion-list>
+
+      <div class="item item-divider">신청자</div>
+      <ion-item  class="item-avatar" ng-repeat="TeamMember in TeamMemberList" ng-show="TeamMember.duty == 0">
+        <img ng-src="{{TeamMember.p_picture + updateImg}}">
+        <h2>{{TeamMember.nickname}}</h2><!--style="line-height: 300%;" -->
+        <span ng-if="TeamMember.duty == 0" class="badge badge-dark" style="right:80px;">신청자</span>
+      </ion-item>
+
+
+      <div class="item item-divider">팀원</div>
+      <ion-item  class="item-avatar" ng-repeat="TeamMember in TeamMemberList" ng-show="TeamMember.duty != 0">
+        <img ng-src="{{TeamMember.p_picture + updateImg}}">
+        <h2>{{TeamMember.nickname}}</h2><!--style="line-height: 300%;" -->
+        <span class="badge" ng-class="{FW : 'badge-assertive', MF : 'badge-balanced', DF : 'badge-positive', GK : 'badge-energized'}[TeamMember.position]">{{TeamMember.position}}</span>
+        <span ng-if="TeamMember.duty == 1" class="badge badge-royal" style="right:80px;">팀장</span>
+        <span ng-if="TeamMember.duty == 2" class="badge badge-dark" style="right:80px;">팀원</span>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
+  <ion-footer-bar class="bar-positive footer-bar" ng-show="!isMyTeam || (isMyDuty == 0 && isMyTeam)">
+    <div class="button-bar" ng-show="buttonBar">
+      <button class="button button-clear" ng-bind="registerName" ng-show="registerShow" ng-click="PositiveBtn()" style="border:1px solid white; border-radius:3px;"></button>
+      <button class="button button-clear" ng-show="cancelShow" ng-click="negativeBtn()" style="border:1px solid white; border-radius:3px;">취소</button>
+      <button class="button button-clear" ng-bind="stateName" ng-show="stateShow" style="border:1px solid white; border-radius:3px;" ng-disabled="true">가입 신청</button>
+    </div>
+  </ion-footer-bar>
+
+</ion-modal-view>
+
